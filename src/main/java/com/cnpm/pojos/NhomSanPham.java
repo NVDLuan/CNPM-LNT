@@ -30,6 +30,7 @@ public class NhomSanPham implements Serializable{
     private String tenNhomSP;
     @OneToMany(mappedBy = "nSP")
     private List<LoaiSanPham> loaiSanPham;
+    
 
     public List<LoaiSanPham> getLoaiSanPham() {
         return loaiSanPham;

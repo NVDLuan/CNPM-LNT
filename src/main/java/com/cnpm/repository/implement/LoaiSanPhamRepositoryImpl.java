@@ -55,13 +55,14 @@ public class LoaiSanPhamRepositoryImpl implements LoaiSanPhamReponsitory{
         Session session = this.sessionFactory.getObject().getCurrentSession();
         try {
             LoaiSanPham lsp = session.get(LoaiSanPham.class, id);
-            session.save(lsp);
+            session.delete(lsp);
             return true;
         } catch (HibernateException e) {
             System.err.println(e.toString());
             return false;
         }
     }
+    
 
     @Override
     public LoaiSanPham getOne(int id) {

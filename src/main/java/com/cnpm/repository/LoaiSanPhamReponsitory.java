@@ -18,7 +18,6 @@ public interface LoaiSanPhamReponsitory {
     List<LoaiSanPham> getList();
     boolean add(LoaiSanPham lsp);
     boolean delete(int id);
-
     LoaiSanPham getOne(int id);
     
 }

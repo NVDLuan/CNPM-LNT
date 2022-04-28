@@ -65,5 +65,15 @@ public class AccountServiceImplement implements AccountService{
         }
         return false;
     }
-    
+
+    @Override
+    public List<Account> getListAccount() {
+        return this.account.getListAccount();
+    }
+
+    @Override
+    public boolean delete(int id) {
+        return this.account.delete(id);
+    }
+
 }

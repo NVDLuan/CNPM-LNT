@@ -1,8 +1,3 @@
-<%-- 
-    Document   : chitiet
-    Created on : Apr 2, 2022, 10:03:49 AM
-    Author     : l
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -39,16 +34,16 @@
                         <i class="select__input--icon fa-solid fa-chevron-down"></i>
                         <ul class="select__input--list">
                             <li class="select__input--item">
-                                <a href="" class="select__input--link">Giá: Thấp đến cao</a>                                        
+                                <a href="" class="select__input--link">Giá: Thấp đến cao</a>
                             </li>
-                            <li class="select__input--item">                                       
+                            <li class="select__input--item">
                                 <a href="" class="select__input--link">Giá: Cao đến thấp</a>
                             </li>
                         </ul>
                     </div>
                     <div class="home__fillter--page">
                         <span class="home__fillter--page-num">
-                            <span class="home__fillter--page-numberone">1</span>/14                             
+                            <span class="home__fillter--page-numberone">1</span>/14
                         </span>
                         <div class="home__fillter--page-control">
                             <a href="" class="home__fillter--page-button home__fillter--page-button-disable">
@@ -71,7 +66,7 @@
                                     <p class="product-detail-priceOld">
                                         ${product.gia}</p>
                                     <p class="product-detail-priceSale">
-                                        215000₫</p>
+                                        ${product.giaKhuyenMai}</p>
                                     <p class="product-detail-percentSale">5% GIẢM
                                     </p>
                                 </div>
@@ -80,28 +75,7 @@
                                          class="product-detail-price-slogan-img">
                                     <div class="product-detail-price-slogan-text-text">
                                         <p class="product-detail-price-slogan-text">Gì cũng rẻ</p>
-                                        <p class="product-detail-price-slogan-ad">Giá tốt nhất so với các
-                                            sản phẩm cùng loại trên Shopee!
-                                            Giá tốt nhất so với các
-                                            sản phẩm cùng loại trên Shopee!
-                                            Giá tốt nhất so với các
-                                            sản phẩm cùng loại trên Shopee!
-                                            sản phẩm cùng loại trên Shopee!
-                                            Giá tốt nhất so với các
-                                            sản phẩm cùng loại trên Shopee!
-                                            Giá tốt nhất so với các
-                                            sản phẩm cùng loại trên Shopee!
-                                            sản phẩm cùng loại trên Shopee!
-                                            Giá tốt nhất so với các
-                                            sản phẩm cùng loại trên Shopee!
-                                            Giá tốt nhất so với các
-                                            sản phẩm cùng loại trên Shopee!
-                                            sản phẩm cùng loại trên Shopee!
-                                            Giá tốt nhất so với các
-                                            sản phẩm cùng loại trên Shopee!
-                                            Giá tốt nhất so với các
-                                            sản phẩm cùng loại trên Shopee!
-                                        </p>
+                                        <p class="product-detail-price-slogan-ad">${product.chiTiet}</p>
                                     </div>
                                 </div>
                             </div>
@@ -110,6 +84,12 @@
                                 <i class="fas fa-cart-plus product-detail-btn-icon"></i>
                                 Thêm Vào Giỏ Hàng
                             </button>
+                            <a href="<c:url value="/Thanhtoan" />">
+                                <button class="product-detail-btn">
+                                    <i class="fas fa-cart-plus product-detail-btn-icon"></i>
+                                    Mua ngay
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>

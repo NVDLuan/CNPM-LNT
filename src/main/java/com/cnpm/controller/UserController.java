@@ -38,6 +38,8 @@ public class UserController {
     private AccountService userDetailsService;
     @Autowired
     private JavaMailSender mailSender;
+    @Autowired
+    private AccountService accountService;
     
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
@@ -66,20 +68,7 @@ public class UserController {
             if(!this.userDetailsService.addAccount(acc)) return "signup";
             return "redirect:/";
         }
-        
-//        List <Account> accs = this.userDetailsService.getAccount(acc.getUser());
-//        if(!accs.isEmpty()){
-//            String mess = "tai khoang da ton tai";
-//            model.addAttribute("mess", mess);
-//            return "signup";
-//        }
-//        else{
-//            if(!this.userDetailsService.addAccount(acc)) return "signup";
-//            else return "redirect:/";
-//        }
-        
-        
-        
+  
         return "signup";
     }
     @PostMapping("/verification")

@@ -60,5 +60,26 @@ public class AccountRepositoryImplement implements AccountRepository{
             return false;
         }
     }
+
+    @Override
+    public boolean delete(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            Account acc = session.get(Account.class, id);
+            session.delete(acc);
+            return true;
+        }catch (HibernateException e) {
+            System.err.println(e.toString());
+            return false;
+        }
+    }
+
+    @Override
+    public List<Account> getListAccount() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("From Account");
+        return q.getResultList();
+    }
+    
     
 }

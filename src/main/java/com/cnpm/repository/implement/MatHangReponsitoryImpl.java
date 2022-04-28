@@ -153,14 +153,19 @@ public class MatHangReponsitoryImpl implements MatHangReponsitory {
 
     @Override
     public boolean updateProduct(MatHang matHang) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
         try {
-            Session session = this.sessionFactory.getObject().getCurrentSession();
+            Map result = this.cloudinary.uploader().upload(matHang.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+            matHang.setHinhAnh((String) result.get("secure_url"));
             session.update(matHang);
             return true;
-        }catch (HibernateException e){
-            System.err.println("============= UPDATE PRODUCT============"+ e.toString());
-            return false;
+        } catch (IOException ex) {
+            Logger.getLogger(MatHangReponsitoryImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (HibernateException e) {
+            System.err.println("== update mat hang ===");
+
         }
+        return false;
     }
 
 

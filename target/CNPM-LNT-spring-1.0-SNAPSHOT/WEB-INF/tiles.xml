@@ -14,24 +14,11 @@ and open the template in the editor.
         <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
         <put-attribute name="content" value="" />
         <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
-    </definition>
-    
+    </definition>   
     <definition name="index" extends="baseLayout">
         <put-attribute name="title" value="Trang chủ"/>
         <put-attribute name="content" value="/WEB-INF/VIEW/index.jsp"/>
     </definition>
-
-    <definition name="baseAdmin" template="/WEB-INF/layout/baseAdmin.jsp">
-        <put-attribute name="title" value="" />
-        <put-attribute name="header" value="/WEB-INF/layout/headerAdmin.jsp"/>
-        <put-attribute name="footer" value="/WEB-INF/layout/footerAdmin.jsp"/>
-        <put-attribute name="content" value=""/>
-    </definition>
-    <definition name="pageAdmin" extends="baseAdmin">
-
-    </definition>
-
-
     <definition name="giohang" extends="baseLayout">
         <put-attribute name="title" value="Giỏ hàng"/>
         <put-attribute name="content" value="/WEB-INF/VIEW/giohang.jsp"/>
@@ -43,14 +30,43 @@ and open the template in the editor.
     <definition name="chitiet" extends="baseLayout">
         <put-attribute name="title" value="Chi tiết"/>
         <put-attribute name="content" value="/WEB-INF/VIEW/chitiet.jsp"/>
+    </definition>
+    <!--Phan admin-->
+    <definition name="baseAdmin" template="/WEB-INF/layout/baseAdmin.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/WEB-INF/layout/headerAdmin.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/layout/footerAdmin.jsp"/>
+        <put-attribute name="content" value=""/>
+    </definition>
+    <definition name="pageAdmin" extends="baseAdmin">
+        <put-attribute name="title" value="WELCOME ADMIN"/>
+        <put-attribute name="content" value="/WEB-INF/VIEW/dashboard.jsp"/>
+    </definition>
+    <definition name="sanpham" extends="baseAdmin">
+        <put-attribute name="title" value="Sản phẩm"/>
+        <put-attribute name="content" value="/WEB-INF/VIEW/sanpham.jsp"/>
+    </definition>
+    <definition name="taikhoan" extends="baseAdmin">
+        <put-attribute name="title" value="Danh sách tài khoản"/>
+        <put-attribute name="content" value="/WEB-INF/VIEW/taikhoan.jsp"/>
+    </definition>
+    <definition name="themsanpham" extends="baseAdmin">
+        <put-attribute name="title" value="Thêm sản phẩm"/>
+        <put-attribute name="content" value="/WEB-INF/VIEW/themsanpham.jsp"/>
+    </definition>
+    
+    <definition name="updatesanpham" extends="baseAdmin">
+        <put-attribute name="title" value="Update sản phẩm"/>
+        <put-attribute name="content" value="/WEB-INF/VIEW/updatesanpham.jsp"/>
+    </definition>
+   
+    <definition name="nhomsanpham" extends="baseAdmin">
+        <put-attribute name="title" value="Nhom sản phẩm"/>
+        <put-attribute name="content" value="/WEB-INF/VIEW/nhomsanpham.jsp"/>
+    </definition>
+    <definition name="loaisanpham" extends="baseAdmin">
+        <put-attribute name="title" value="Loai sản phẩm"/>
+        <put-attribute name="content" value="/WEB-INF/VIEW/loaisanpham.jsp"/>
+    </definition>
 
-    </definition>
-<!--    <definition name="login" extends="baseLayout">
-        <put-attribute name="title" value="Dang Nhap"/>
-        <put-attribute name="content" value="/WEB-INF/VIEW/login.jsp"/>
-    </definition>
-    <definition name="signup" extends="baseLayout">
-        <put-attribute name="title" value="Dang ki"/>
-        <put-attribute name="content" value="/WEB-INF/VIEW/signup.jsp"/>
-    </definition>-->
 </tiles-definitions>
