@@ -134,6 +134,11 @@ public class AdminControler {
         
         return "taikhoan";
     }
+//    @RequestMapping("/taikhoan")
+//    public String showuser(Model model){
+//        model.addAttribute("user", new Account());
+//        return "header";
+//    }
     @GetMapping("/deleteAccount/{id}")
     public String deleteAccount(@PathVariable int id) {
         this.accountService.delete(id);

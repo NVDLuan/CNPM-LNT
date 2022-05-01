@@ -12,14 +12,10 @@
     display: none;
     animation: fadeIn ease-in 0.3s;
 }
+#hidden{
+    display: none;
+}
 
-.badge{
-    color: var(--white_color);
-    font-size: 1.2rem;
-}
-header__navbar-user-hover:hover .header__navbar-item--hover .header__navbar-user-menu{
-    display: block;
-}
 .header__navbar-user-menu::before{
     content: "";
     border-width: 18px 22px;
@@ -30,6 +26,7 @@ header__navbar-user-hover:hover .header__navbar-item--hover .header__navbar-user
     top: -30px;
 
 }
+
 .header__navbar-user-menu::after{
     content: "";
     display: block;
@@ -45,6 +42,8 @@ header__navbar-user-hover:hover .header__navbar-item--hover .header__navbar-user
 .header__navbar-user-item {
     list-style: none;
     margin: 5px 5px;
+    font-size: 1.4rem;
+    color: var(--text_color);
 }
 .header__navbar-user-item a:hover{
     color: var(--primary_color);
