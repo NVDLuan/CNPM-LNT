@@ -8,10 +8,12 @@ package com.cnpm.controller;
 import com.cnpm.pojos.LoaiSanPham;
 import com.cnpm.pojos.MatHang;
 import com.cnpm.pojos.NhomSanPham;
+import com.cnpm.services.AccountService;
 import com.cnpm.services.LoaiSanPhamService;
 import com.cnpm.services.MatHangService;
 import com.cnpm.services.NhomSanPhamService;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +23,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import com.cnpm.pojos.Account;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import javax.xml.bind.DatatypeConverter;
 /**
  *
  * @author ADMIN
@@ -35,52 +40,53 @@ public class AdminControler {
     private NhomSanPhamService nhomSanPhamService;
     @Autowired
     private LoaiSanPhamService loaiSanPhamService;
-    
-    @GetMapping("/matHang/add")
+    @Autowired
+    private AccountService accountService;
+    @GetMapping("/themsanpham")
     public String addMatHang(Model model){
         model.addAttribute("mathang", new MatHang());
         List <LoaiSanPham> listLsp = this.loaiSanPhamService.getList();
         model.addAttribute("list", listLsp);
-        return "add";
+        return "themsanpham";
     }
     
     @PostMapping("/matHang/add")
     public String readdMatHang(@ModelAttribute(value="mathang") MatHang hang){
         hang.setLoaiSP(this.loaiSanPhamService.getOne(hang.getIdLoaiSanPham()));
-        hang.setGiaKhuyenMai(0);
         if(this.matHangService.add(hang)){
             return "redirect:/";
         }
         else{
-            return "add";
+            return "themsanpham";
         }
     }
     
-    @GetMapping("/nhomSanPham/add")
+    @GetMapping("/nhomsanpham")
     public String addNhomSanPham(Model model){
         model.addAttribute("nsp", new NhomSanPham());
-
-        return "addNhomSanPham";
+        model.addAttribute("nhom", this.nhomSanPhamService.getNSP());
+        return "nhomsanpham";
     }
-    
+
     @RequestMapping(path= "/nhomSanPham/add", method = RequestMethod.POST, produces = "application/x-www-form-urlencoded;charset=utf-8")
     public String readdNhomSanPham(@ModelAttribute(value="nsp")NhomSanPham nsp){
         System.err.println();
         System.err.println(nsp.getTenNhomSP());
         if(this.nhomSanPhamService.add(nsp)){
-            return "redirect:/";
+            return "redirect:/admin/nhomsanpham";
         }
         else{
             return "addNhomSanPham";
         }
     }
     
-    @GetMapping("/loaiSanPham/add")
+    @GetMapping("/loaisanpham")
     public String addLoaiSanPham(Model model){
         List<NhomSanPham> listNSP = this.nhomSanPhamService.getNSP();
         model.addAttribute("lsp", new LoaiSanPham());
         model.addAttribute("listNSP", listNSP);
-        return "addLoaiSanPham";
+        model.addAttribute("loai", this.loaiSanPhamService.getList());
+        return "loaisanpham";
     }
     
     @PostMapping("/loaiSanPham/add")
@@ -90,18 +96,49 @@ public class AdminControler {
         System.err.println();
         System.err.println("===================== Fix bug Fix BUG ========================="+lsp.getTenLoaiSP());
         if(this.loaiSanPhamService.add(lsp)){
-            return "redirect:/";
+            return "redirect:/admin/loaisanpham";
         }
         else{
             return "addLoaiSanPham";
         }
     }
-
+ 
     @RequestMapping("")
-    public String admin(Model model){
-
+    public String admin(Model model, @RequestParam(required = false) Map<String, String> param){
+        int page = Integer.parseInt(param.getOrDefault("page", "1"));
+        int count = Integer.parseInt(param.getOrDefault("count", "20"));
+        model.addAttribute("list", this.matHangService.getList(count, page));
         return "pageAdmin";
     }
-
+    
+    @RequestMapping("/sanpham")
+    public String danhsachsanpham(Model model, @RequestParam(required = false) Map<String, String> param){
+        int page = Integer.parseInt(param.getOrDefault("page", "1"));
+        int count = Integer.parseInt(param.getOrDefault("count", "20"));
+        model.addAttribute("list", this.matHangService.getList(count, page));
+        return "sanpham";
+    }
+//    Phần tài khoản
+    @RequestMapping("/taikhoan")
+    public String danhsachtaikhoan(Model model, @RequestParam(required = false) Map<String, String> param) throws NoSuchAlgorithmException{
+        List<Account> list = this.accountService.getListAccount();
+        for(int i= 0; i < list.size(); i++){
+            String pass = list.get(i).getPass();
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(pass.getBytes());
+            byte[] digest = md.digest();
+            String passok = DatatypeConverter.printHexBinary(digest).toUpperCase();
+            list.get(i).setPass(passok);
+        }
+        model.addAttribute("account", list);
+        
+        return "taikhoan";
+    }
+    @GetMapping("/deleteAccount/{id}")
+    public String deleteAccount(@PathVariable int id) {
+        this.accountService.delete(id);
+        return "redirect:/admin/taikhoan";
+    }
+//    Kết thúc phần tài khoản
 
 }

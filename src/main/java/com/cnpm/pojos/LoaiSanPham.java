@@ -25,7 +25,6 @@ public class LoaiSanPham implements Serializable{
     private NhomSanPham nSP;
     @Column(name = "TenLoaiSP")
     private String tenLoaiSP;
-
     @OneToMany(mappedBy = "loaiSP")
     private List<MatHang> listMatHang;
     @Transient

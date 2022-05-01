@@ -28,15 +28,18 @@
                         </div>
                     </div>
                 </li>
-                <li class="header__navbar-item">
+                <li class="header__navbar-item header__navbar-item--lnt">
                     <span class="header__navbar-title--no-pointer">Kết nối</span>
                 </li>
-                <a href="" class="header__navbar-icon-link"><i class="header__navbar-icon fa fa-facebook-f" style="font-size:20px"></i></a>
-                <a href="" class="header__navbar-icon-link"><i class="header__navbar-icon fa-brands fa-google"></i></a>
-                <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <c:url var="link" value="/admin"/>
-                <a href="${link}">admin</a>
-                </sec:authorize>
+                <li class="header__navbar-item">
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <c:url var="link" value="/admin"/>
+                        <a class="header__navbar-title--no-pointer" href="${link}">Admin</a>
+                    </sec:authorize>
+                </li>
+                <a href="https://www.facebook.com/ShopeeVN" class="header__navbar-icon-link"><i class="header__navbar-icon fa fa-facebook-f" style="font-size:20px"></i></a>
+                <a href="https://www.instagram.com/shopee_vn/" class="header__navbar-icon-link"><i class="header__navbar-icon fa-brands fa-instagram"></i></a>
+
             </ul>
 
             <ul class="header__navbar-list">
@@ -51,19 +54,19 @@
                         </header>
                         <ul class="header__notification--list">
                             <c:forEach begin="1" end="4">
-                            <li class="header__notification--item header__notification--item--reading">
-                                <a href="" class="header__notification--link">
-                                    <img src="<c:url value="/images/trung.jpg"/> " alt="" class="header__notification--img">
-                                    <div class="header__notification--info">
-                                        <span class="header__notification--name">
-                                            Mềm, dẻo, ngọt, thơm
-                                        </span>
-                                        <span class="header__notification--descriotion">
-                                            Gạo ngon nhất khi sử dụng trong vòng 6 tháng kể từ ngày sản xuất và nấu đúng định lượng ghi trên bao bì
-                                        </span>
-                                    </div>
-                                </a>
-                            </li>
+                                <li class="header__notification--item header__notification--item--reading">
+                                    <a href="" class="header__notification--link">
+                                        <img src="<c:url value="/images/trung.jpg"/> " alt="" class="header__notification--img">
+                                        <div class="header__notification--info">
+                                            <span class="header__notification--name">
+                                                Mềm, dẻo, ngọt, thơm
+                                            </span>
+                                            <span class="header__notification--descriotion">
+                                                Gạo ngon nhất khi sử dụng trong vòng 6 tháng kể từ ngày sản xuất và nấu đúng định lượng ghi trên bao bì
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
                             </c:forEach>
                         </ul>
                         <footer class="header__notification--footer">
@@ -122,8 +125,7 @@
 
             </div>
             <c:url var="action" value="/" />
-            <form method="get" action="${action}">
-            <div class="header__search">
+            <form method="get" action="${action}" class="header__search">
                 <input type="text" name="kw" class="header__search--input" placeholder="Tìm kiếm sản phẩm tại đây">
                 <div class="header__search--select">
                     <span class="header__search--select-label">Trong shop</span>
@@ -132,7 +134,6 @@
                 <button class="search__icon--btn">
                     <i class="search__icon--btn-icon fa-solid fa-magnifying-glass"></i>
                 </button>
-            </div>
             </form>
             <div class="header__cart">
                 <a href="<c:url value="/cart"/>"><i class="header__cart--icon fa-solid fa-cart-shopping"></i><span class="badge badge-danger" id="cart-count">${cartCounter}</span></a>

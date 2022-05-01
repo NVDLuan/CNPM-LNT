@@ -11,36 +11,36 @@
                     <h1 class="container__giohang--title"><a href="<c:url value="/" />" class="home__home">TRANG CHỦ /</a> Giỏ hàng</h1>
                 </div>
                 <c:forEach var="cart" items="${carts}" >
-                <div class="giohang" id="giohang--${cart.idGioHang}">
-                    <div class="container__giohang">
-                        <div class="container__images">
-                            <img src="${cart.idMatHang.hinhAnh}" alt="" class="container__img">
-                        </div>
-                        <div class="container__name-product">
-                            <span class="container__product">${cart.idMatHang.tenMH}</span>
-                            <p class="container__product--title">${cart.idMatHang.chiTiet}</p>
-                            <p class="container__product--title">${cart.idMatHang.hang}</p>
-                            <a href="javascript:;" class="container__product--button-delete" onclick="deleteCart(${cart.idGioHang})">Xóa</a>
-                            <a href="" class="container__product--button-buy">Để giành mua sau</a>
-                        </div>
+                    <div class="giohang" id="giohang--${cart.idGioHang}">
+                        <div class="container__giohang">
+                            <div class="container__images">
+                                <img src="${cart.idMatHang.hinhAnh}" alt="" class="container__img">
+                            </div>
+                            <div class="container__name-product">
+                                <span class="container__product">${cart.idMatHang.tenMH}</span>
+                                <p class="container__product--title">${cart.idMatHang.chiTiet}</p>
+                                <p class="container__product--title">${cart.idMatHang.hang}</p>
+                                <a href="javascript:;" class="container__product--button-delete" onclick="deleteCart(${cart.idGioHang})">Xóa</a>
+                                <a href="" class="container__product--button-buy">Để giành mua sau</a>
+                            </div>
 
-                    </div>
-                    <div class="container__price">
-                        <div class="container__price--items">
-                            <div class="container__price--new">${cart.idMatHang.giaKhuyenMai}</div>
-                            <div class="container__price--old">${cart.idMatHang.gia}</div>
                         </div>
-                        <div class="container__price--soluong">
-                            <!-- <input type="number" value="1" class="natural__number"> -->
-                            <div class="dm_up_down">
-                                <button class="down quantity-change" data-value="-1" onclick="bot(${cart.idGioHang})">-</button>
-                                <input class="text-center buy-quantity" id="count-cart-${cart.idGioHang}" value="${cart.soLuong}" min="1" size="5">
-                                <button class="up quantity-change" data-value="1" onclick="them(${cart.idGioHang})">+</button>
+                        <div class="container__price">
+                            <div class="container__price--items">
+                                <div class="container__price--new">${cart.idMatHang.giaKhuyenMai}</div>
+                                <div class="container__price--old">${cart.idMatHang.gia}</div>
+                            </div>
+                            <div class="container__price--soluong">
+                                <!-- <input type="number" value="1" class="natural__number"> -->
+                                <div class="dm_up_down">
+                                    <button class="down quantity-change" data-value="-1" onclick="bot(${cart.idGioHang})">-</button>
+                                    <input class="text-center buy-quantity" id="count-cart-${cart.idGioHang}" value="${cart.soLuong}" min="1" size="5">
+                                    <button class="up quantity-change" data-value="1" onclick="them(${cart.idGioHang})">+</button>
+                                </div>
                             </div>
                         </div>
+                        <div class="clear" style="clear: both;"></div>
                     </div>
-                    <div class="clear" style="clear: both;"></div>
-                </div>
                 </c:forEach>
             </div>
             <div class="grid__column-2-16 marginn-top">
@@ -57,13 +57,13 @@
                         </div>
                         <p class="vat">(Đã bao gồm thuế VAT nếu có)</p>
                     </div>
-                    <button class="btn__price--items">Tiến hành đạt hàng</button>
+                    <a href="<c:url value="/Thanhtoan"/>"><button class="btn__price--items">Tiến hành đạt hàng</button></a>
                     <div class="discount__code">
                         <span class="discount__code--donate">Mã giảm giá / quà tặng</span>
                         <br>
                         <div class="timkiem">
                             <input type="text" class="text__discount__code" placeholder="Nhập ở đây...">
-                            <input type="button" class="btn__discount__code" value="Đồng ý">                                       
+                            <input type="button" class="btn__discount__code" value="Đồng ý">
                         </div>
                     </div>
                     <div class="clear"></div>

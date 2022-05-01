@@ -60,6 +60,15 @@ html{
     padding-right: 5px;
     width: 30%;
 }
+.grid__column-2-15-slider {
+    width: 70%;
+    
+}
+.grid__column-2-16-slider {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 30%;
+}
 @keyframes fadeIn{
     from{
         opacity: 0;
