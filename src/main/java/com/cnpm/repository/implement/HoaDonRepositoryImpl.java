@@ -1,5 +1,6 @@
 package com.cnpm.repository.implement;
 
+import com.cnpm.javaUtils.PersonUsing;
 import com.cnpm.pojos.Account;
 import com.cnpm.pojos.HoaDon;
 import com.cnpm.repository.AccountRepository;
@@ -28,6 +29,9 @@ public class HoaDonRepositoryImpl implements HoaDonRepository {
     @Override
     public boolean add(HoaDon hoaDon) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
+        String user = PersonUsing.getUser();
+        List<Account> accounts = this.accountRepository.getAccount(user);
+        hoaDon.setIdKhachHang(accounts.get(0));
         session.save(hoaDon);
         return true;
 
@@ -48,13 +52,14 @@ public class HoaDonRepositoryImpl implements HoaDonRepository {
     }
 
     @Override
-    public List<HoaDon> getList(String idKhachHang) {
+    public List<HoaDon> getList() {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery query = builder.createQuery(HoaDon.class);
         Root root = query.from(HoaDon.class);
         query = query.select(root);
-        List<Account> acc = this.accountRepository.getAccount(idKhachHang);
+        String user = PersonUsing.getUser();
+        List<Account> acc = this.accountRepository.getAccount(user);
         Predicate p = builder.equal(root.get("idKhachHang").as(Account.class),acc.get(0));
         query =query.where(p);
         Query q = session.createQuery(query);

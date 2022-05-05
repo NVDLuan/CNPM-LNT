@@ -84,7 +84,7 @@
                                 <i class="fas fa-cart-plus product-detail-btn-icon"></i>
                                 Thêm Vào Giỏ Hàng
                             </button>
-                            <a href="<c:url value="/Thanhtoan" />">
+                            <a href="<c:url value="/Thanhtoan/${product.idMatHang}" />">
                                 <button class="product-detail-btn">
                                     <i class="fas fa-cart-plus product-detail-btn-icon"></i>
                                     Mua ngay

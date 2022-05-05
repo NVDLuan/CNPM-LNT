@@ -6,19 +6,11 @@
 package com.cnpm.controller;
 
 import com.cnpm.javaUtils.PersonUsing;
-import com.cnpm.pojos.Account;
-import com.cnpm.pojos.MatHang;
-import com.cnpm.pojos.NhomSanPham;
-import com.cnpm.services.AccountService;
-import com.cnpm.services.GioHangServices;
-import com.cnpm.services.LoaiSanPhamService;
-import com.cnpm.services.MatHangService;
-import com.cnpm.services.NhomSanPhamService;
+import com.cnpm.pojos.*;
+import com.cnpm.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +30,8 @@ public class HomeController {
     private GioHangServices gioHangServices;
     @Autowired
     private LoaiSanPhamService loaiSanPhamService;
+    @Autowired
+    private AddressServices addressServices;
 
     @ModelAttribute
     public void attribute(Model model) {
@@ -68,8 +62,11 @@ public class HomeController {
         return "lienhe";
     }
 
-    @RequestMapping("/Thanhtoan")
-    public String Thanhtoan(Model model) {
+    @RequestMapping("/Thanhtoan/{id}")
+    public String Thanhtoan(Model model ,@PathVariable(value = "id") Integer id) {
+        model.addAttribute("product", this.matHangService.getOne(id));
+        model.addAttribute("hoadon",new HoaDon());
+        model.addAttribute("diachi", this.addressServices.listDiaChi());
         return "Thanhtoan";
     }
 
@@ -83,8 +80,22 @@ public class HomeController {
     @GetMapping("/user")
     public ResponseEntity<String> user() {
         String username = PersonUsing.getUser();
+
         ResponseEntity<String> stringRequestEntity = new ResponseEntity<>(username, HttpStatus.OK);
         return stringRequestEntity;
+    }
+
+    @GetMapping("/address/add")
+    public String address(Model model){
+        model.addAttribute("address", new DiaChi());
+        return "addAddress";
+    }
+    @PostMapping("/address/add")
+    public String reAdd(Model model, @ModelAttribute(name = "address")DiaChi diaChi){
+        if(this.addressServices.create(diaChi)){
+            return "forward:/Thanhtoan";
+        }
+        return "redirect:/address/add";
     }
 
 }

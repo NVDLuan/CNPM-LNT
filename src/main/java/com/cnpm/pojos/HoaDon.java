@@ -24,18 +24,33 @@ public class HoaDon {
     @JoinColumn(name="IDMatHang")
     @ManyToOne
     private MatHang idMatHang;
-    @Column(name="TenKhachHang")
-    private String tenKhachHang;
     @Column(name="SoLuong")
     private int soLuong;
-    @Column(name="SoDienThoai")
-    private String sdt;
-    @Column(name="DiaChiGiao")
-    private String diaChiGiao;
+    @JoinColumn(name="diachi")
+    @ManyToOne
+    private DiaChi diaChi;
     @Column(name="TongTien")
     private int tongTien;
     @Column(name="TinhTrang")
     private int tinhTrang;
+    @Transient
+    private int idAddress;
+
+    public int getIdAddress() {
+        return idAddress;
+    }
+
+    public void setIdAddress(int idAddress) {
+        this.idAddress = idAddress;
+    }
+
+    public DiaChi getDiaChi() {
+        return diaChi;
+    }
+
+    public void setDiaChi(DiaChi diaChi) {
+        this.diaChi = diaChi;
+    }
 
     public int getIdHoaDon() {
         return idHoaDon;
@@ -61,13 +76,7 @@ public class HoaDon {
         this.idKhachHang = idKhachHang;
     }
 
-    public String getTenKhachHang() {
-        return tenKhachHang;
-    }
 
-    public void setTenKhachHang(String tenKhachHang) {
-        this.tenKhachHang = tenKhachHang;
-    }
 
     public int getSoLuong() {
         return soLuong;
@@ -77,21 +86,7 @@ public class HoaDon {
         this.soLuong = soLuong;
     }
 
-    public String getSdt() {
-        return sdt;
-    }
 
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
-    }
-
-    public String getDiaChiGiao() {
-        return diaChiGiao;
-    }
-
-    public void setDiaChiGiao(String diaChiGiao) {
-        this.diaChiGiao = diaChiGiao;
-    }
 
     public int getTongTien() {
         return tongTien;
@@ -112,13 +107,10 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(Account idKhachHang, MatHang idMatHang, String tenKhachHang, int soLuong, String sdt, String diaChiGiao, int tongTien, int tinhTrang) {
+    public HoaDon(Account idKhachHang, MatHang idMatHang, int soLuong, int tongTien, int tinhTrang) {
         this.idKhachHang = idKhachHang;
         this.idMatHang = idMatHang;
-        this.tenKhachHang = tenKhachHang;
         this.soLuong = soLuong;
-        this.sdt = sdt;
-        this.diaChiGiao = diaChiGiao;
         this.tongTien = tongTien;
         this.tinhTrang = tinhTrang;
     }

@@ -26,15 +26,25 @@
 <body>
 <main role="main">
     <div class="container mt-4">
-        <form class="needs-validation" name="frmthanhtoan" method="post"
-              action="#">
-            <input type="hidden" name="kh_tendangnhap" value="dnpcuong">
+        <form:form class="needs-validation" name="frmthanhtoan" method="post"
+              action="#" modelAttribute="hoadon">
 
             <div class="py-5 text-center">
                 <i class="fa fa-credit-card fa-4x" aria-hidden="true"></i>
                 <h2>Thanh toán</h2>
                 <p class="lead">Vui lòng kiểm tra thông tin Khách hàng, thông tin Giỏ hàng trước khi Đặt hàng.</p>
             </div>
+            <c:if test="${diachi==null}">
+                <c:url value="/address/add" var="address"/>
+                <a href="${address}"><h3>thêm địa chỉ mới</h3></a>
+            </c:if>
+            <c:if test="${diachi!=null}">
+                <form:select path="idAddress">
+                    <c:forEach var="ip" items="${diachi}">
+                        <form:option value="${ip.id}"> ${ip.name} - ${ip.phone} - ${ip.address}</form:option>
+                    </c:forEach>
+                </form:select>
+            </c:if>
 
             <div class="row">
                 <div class="col-md-4 order-md-2 mb-4">
@@ -128,7 +138,7 @@
                         hàng</button>
                 </div>
             </div>
-        </form>
+        </form:form>
 
     </div>
     <!-- End block content -->
