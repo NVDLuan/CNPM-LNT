@@ -50,13 +50,16 @@ public class UserController {
     
     @GetMapping("/login")
     public String login(){
+
         return "login";
     }
+
     @RequestMapping("/signup")
     public String signup(Model model){
         model.addAttribute("acc", new AccountTmp());
         return "signup";
     }
+
     
     @GetMapping("/register")
     public String register(@RequestParam(value="code") int item, Model model, HttpSession session){
