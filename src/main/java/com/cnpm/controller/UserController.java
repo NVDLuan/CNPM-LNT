@@ -8,8 +8,7 @@ package com.cnpm.controller;
 import com.cnpm.pojos.Account;
 import com.cnpm.pojos.AccountTmp;
 import com.cnpm.services.AccountService;
-import com.cnpm.validator.UsernameAccount;
-import java.util.List;
+
 import java.util.Random;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +17,11 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -40,7 +37,6 @@ public class UserController {
     private JavaMailSender mailSender;
     @Autowired
     private AccountService accountService;
-    
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
@@ -87,6 +83,12 @@ public class UserController {
         this.mailSender.send(mess);
         session.setAttribute("acc", acc);
         return "chungthuc";
+    }
+
+    @GetMapping("/user/profile")
+    public String profile(Model model){
+        model.addAttribute("myprofile", this.accountService.getProfile());
+        return "profile";
     }
         
 }

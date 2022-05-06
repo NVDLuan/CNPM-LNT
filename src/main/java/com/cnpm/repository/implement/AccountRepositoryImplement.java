@@ -5,6 +5,7 @@
  */
 package com.cnpm.repository.implement;
 
+import com.cnpm.javaUtils.PersonUsing;
 import com.cnpm.pojos.Account;
 import com.cnpm.repository.AccountRepository;
 import java.util.List;
@@ -80,6 +81,12 @@ public class AccountRepositoryImplement implements AccountRepository{
         Query q = session.createQuery("From Account");
         return q.getResultList();
     }
-    
-    
+
+    @Override
+    public Account getProfile() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        String user = PersonUsing.getUser();
+        List<Account> accounts = this.getAccount(user);
+        return accounts.get(0);
+    }
 }

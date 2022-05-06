@@ -17,5 +17,5 @@ public interface AccountRepository {
     boolean delete(int id);
     List<Account> getAccount(String username);
     List<Account> getListAccount();
-
+    Account getProfile();git
 }

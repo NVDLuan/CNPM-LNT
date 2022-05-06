@@ -13,10 +13,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  *
  * @author ADMIN
  */
-public interface AccountService extends UserDetailsService{
+public interface AccountService extends UserDetailsService {
     boolean addAccount(Account acc);
+
     List<Account> getAccount(String username);
+
     boolean checkUsername(String username);
+
     List<Account> getListAccount();
+
     boolean delete(int id);
+
+    Account getProfile();
 }

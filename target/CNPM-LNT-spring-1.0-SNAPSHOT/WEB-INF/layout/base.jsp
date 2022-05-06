@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <link rel="stylesheet" href="<c:url value="/css/base.css"/>" type="text/css"/>
         <link rel="stylesheet" href="<c:url value="/css/main.css"/>"/>
         <link rel="stylesheet" href="<c:url value="/css/all.min.css"/>"/>

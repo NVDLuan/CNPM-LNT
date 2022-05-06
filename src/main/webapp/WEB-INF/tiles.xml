@@ -31,6 +31,11 @@ and open the template in the editor.
         <put-attribute name="title" value="Chi tiết"/>
         <put-attribute name="content" value="/WEB-INF/VIEW/chitiet.jsp"/>
     </definition>
+    <definition name="profile" extends="baseLayout">
+        <put-attribute name="title" value="profile"/>
+        <put-attribute name="content" value="/WEB-INF/VIEW/profile.jsp"/>
+    </definition>
+
     <!--Phan admin-->
     <definition name="baseAdmin" template="/WEB-INF/layout/baseAdmin.jsp">
         <put-attribute name="title" value="" />
