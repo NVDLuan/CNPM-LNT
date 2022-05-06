@@ -23,6 +23,8 @@ public interface MatHangService {
 
     List<MatHang> getList(int count, int page);
 
+    List<MatHang> getListInLSP(int id);
+
     List<MatHang> getList(int count, int page, String kw);
 
     boolean updateProduct(MatHang matHang);

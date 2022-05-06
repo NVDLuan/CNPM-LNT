@@ -44,8 +44,11 @@ public class HomeController {
     public String index(Model model, @RequestParam(required = false) Map<String, String> param) {
         int page = Integer.parseInt(param.getOrDefault("page", "1"));
         String kw = param.getOrDefault("kw", "");
-        model.addAttribute("acc", new Account());
-        model.addAttribute("listHang", this.matHangService.getList(kw, page));
+        int id = Integer.parseInt(param.getOrDefault("danhmuc", "-1"));
+        if(id!=-1){
+            model.addAttribute("listHang", this.matHangService.getListInLSP(id));
+        }
+        else model.addAttribute("listHang", this.matHangService.getList(kw, page));
         model.addAttribute("danhmuc", this.loaiSanPhamService.getList());
         return "index";
     }
@@ -68,6 +71,12 @@ public class HomeController {
         model.addAttribute("hoadon",new HoaDon());
         model.addAttribute("diachi", this.addressServices.listDiaChi());
         return "Thanhtoan";
+    }
+
+    @GetMapping("/Thanhtoan/all")
+    public String hoadon(Model model){
+
+        return null;
     }
 
     @RequestMapping("/chitiet/{id}")

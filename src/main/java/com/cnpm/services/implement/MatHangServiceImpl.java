@@ -47,6 +47,11 @@ public class MatHangServiceImpl implements MatHangService{
     }
 
     @Override
+    public List<MatHang> getListInLSP(int id) {
+        return this.matHangRepository.getListInLSP(id);
+    }
+
+    @Override
     public List<MatHang> getList(int count, int page, String kw) {
         return this.matHangRepository.getList(count, page, kw);
     }
