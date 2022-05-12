@@ -76,4 +76,9 @@ public class AccountServiceImplement implements AccountService{
         return this.account.delete(id);
     }
 
+    @Override
+    public Account getUserById(int id) {
+        return this.account.getUserById(id);
+    }
+
 }

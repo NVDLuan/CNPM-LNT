@@ -75,6 +75,14 @@ public class AccountRepositoryImplement implements AccountRepository{
     }
 
     @Override
+    public Account getUserById(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        return session.get(Account.class, id);
+    }
+
+
+    @Override
     public List<Account> getListAccount() {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         Query q = session.createQuery("From Account");

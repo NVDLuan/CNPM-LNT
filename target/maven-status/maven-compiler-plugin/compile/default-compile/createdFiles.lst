@@ -10,6 +10,7 @@ com\cnpm\repository\GioHangRepository.class
 com\cnpm\repository\ImagesRepository.class
 com\cnpm\repository\LoaiSanPhamReponsitory.class
 com\cnpm\repository\implement\GioHangRepositoryImpl.class
+com\cnpm\services\implement\CommentServiceImplement.class
 com\cnpm\pojos\Images.class
 com\cnpm\services\MatHangService.class
 com\cnpm\repository\implement\HoaDonRepositoryImpl.class
@@ -22,6 +23,7 @@ com\cnpm\pojos\HoaDon.class
 com\cnpm\pojos\MatHang.class
 com\cnpm\services\NhomSanPhamService.class
 com\cnpm\repository\AccountRepository.class
+com\cnpm\pojos\Comment.class
 com\cnpm\repository\NhomSanPhamRepository.class
 com\cnpm\pojos\NhomSanPham.class
 com\cnpm\pojos\NhaBanHang.class

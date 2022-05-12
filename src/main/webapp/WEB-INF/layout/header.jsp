@@ -99,7 +99,7 @@
                             <a href="">Địa chỉ của tôi</a>
                         </li>
                         <li class="header__navbar-user-item">
-                            <a href="">Đơn mua</a>
+                            <a href="">Đổi mật khẩu</a>
                         </li>
                         <li class="header__navbar-user-item">
                             <a href="<c:url value="/logout"/>" >Đăng xuất</a>

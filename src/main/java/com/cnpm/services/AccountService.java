@@ -19,4 +19,5 @@ public interface AccountService extends UserDetailsService{
     boolean checkUsername(String username);
     List<Account> getListAccount();
     boolean delete(int id);
+    Account getUserById(int userId);
 }

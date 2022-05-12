@@ -64,7 +64,7 @@
                     <span class="dot" onclick="currentSlide(5)"></span>
                     <span class="dot" onclick="currentSlide(6)"></span>
                     <span class="dot" onclick="currentSlide(7)"></span>
-                    <span class="dot" onclick="currentSlide(😎"></span>
+                    <span class="dot" onclick="currentSlide(8)"></span>
                 </div>
             </div>
             <div class="grid__column-2-16-slider">
