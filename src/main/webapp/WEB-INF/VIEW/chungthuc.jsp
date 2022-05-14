@@ -14,10 +14,10 @@
 <form method="get" action="${action}">
     <table>
         <tr>
-            <th>user name </th>  
+            <th>user name </th>
             <td><input name="code"/> </td>
         </tr>
-        
+
         <tr><td> <input type="submit" value="đăng kí"/> </td> </tr>
     </table>
 </form>

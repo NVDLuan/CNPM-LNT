@@ -23,6 +23,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
         <title><tiles:insertAttribute name="title"/></title>
         <link rel="shortcut icon" href="<c:url value="/images/shop.png"/>">
     </head>
@@ -40,6 +41,8 @@
         <script src="<c:url value="/js/signup.js"/>"></script>
         <script src="<c:url value="/js/slider.js"/>"></script>
         <script src="<c:url value="/js/addCart.js"/> "></script>
+        <script src="<c:url value="/js/Comment.js"/> "></script>
+        <script src="<c:url value="/js/addComment.js"/> "></script>
 
     </body>
 </html>

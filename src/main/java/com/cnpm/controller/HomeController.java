@@ -8,6 +8,15 @@ package com.cnpm.controller;
 import com.cnpm.javaUtils.PersonUsing;
 import com.cnpm.pojos.*;
 import com.cnpm.services.*;
+import com.cnpm.pojos.Account;
+import com.cnpm.pojos.LoaiSanPham;
+import com.cnpm.pojos.MatHang;
+import com.cnpm.pojos.NhomSanPham;
+import com.cnpm.services.AccountService;
+import com.cnpm.services.GioHangServices;
+import com.cnpm.services.LoaiSanPhamService;
+import com.cnpm.services.MatHangService;
+import com.cnpm.services.NhomSanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +60,7 @@ public class HomeController {
             model.addAttribute("listHang", this.matHangService.getListInLSP(id));
         }
         else model.addAttribute("listHang", this.matHangService.getList(kw, page));
-        model.addAttribute("danhmuc", this.loaiSanPhamService.getList());
+
         return "index";
     }
 
@@ -67,14 +76,6 @@ public class HomeController {
         return "lienhe";
     }
 
-    @RequestMapping("/Thanhtoan/{id}")
-    public String Thanhtoan(Model model ,@PathVariable(value = "id") Integer id) {
-        model.addAttribute("product", this.matHangService.getOne(id));
-        model.addAttribute("hoadon",new HoaDon());
-        model.addAttribute("diachi", this.addressServices.listDiaChi());
-        return "Thanhtoan";
-    }
-
     @GetMapping("/Thanhtoan/all")
     public String hoadon(Model model){
 
@@ -85,8 +86,16 @@ public class HomeController {
     public String chitiet(Model model, @PathVariable(value = "id") Integer id) {
         MatHang matHang = this.matHangService.getOne(id);
         model.addAttribute("product", matHang);
+        model.addAttribute("danhmuc", this.loaiSanPhamService.getList());
         return "chitiet";
     }
+    @RequestMapping("/Thanhtoan/{id}")
+    public String Thanhtoan(Model model, @PathVariable(value = "id") Integer id) {
+        MatHang matHang = this.matHangService.getOne(id);
+        model.addAttribute("product", matHang);
+        return "Thanhtoan";
+    }
+
 
     @GetMapping("/user")
     public ResponseEntity<String> user() {

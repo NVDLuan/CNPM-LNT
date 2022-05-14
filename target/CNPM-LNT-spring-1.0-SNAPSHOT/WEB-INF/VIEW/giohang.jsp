@@ -27,11 +27,10 @@
                         </div>
                         <div class="container__price">
                             <div class="container__price--items">
-                                <div class="container__price--new">${cart.idMatHang.giaKhuyenMai}</div>
-                                <div class="container__price--old">${cart.idMatHang.gia}</div>
+                                <div class="container__price--new">${cart.idMatHang.giaKhuyenMai}đ</div>
+                                <div class="container__price--old">${cart.idMatHang.gia}đ</div>
                             </div>
                             <div class="container__price--soluong">
-                                <!-- <input type="number" value="1" class="natural__number"> -->
                                 <div class="dm_up_down">
                                     <button class="down quantity-change" data-value="-1" onclick="bot(${cart.idGioHang})">-</button>
                                     <input class="text-center buy-quantity" id="count-cart-${cart.idGioHang}" value="${cart.soLuong}" min="1" size="5">

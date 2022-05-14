@@ -12,13 +12,14 @@
                         <li class="category__item category__item--active">
                             <a href="" class="category__item--link">Sản phẩm</a>
                         </li>
-                        <li class="category__item">
-                            <a href="" class="category__item--link">Giày - dép</a>
-                        </li>
-                        <li class="category__item">
-                            <a href="" class="category__item--link">Son môi</a>
-                        </li>
-
+                        <c:forEach var="c" items="${danhmuc}">
+                            <li class="category__item">
+                                <c:url value="/" var="catPath">
+                                    <c:param name="danhmuc" value="${c.idLoaiSP}"></c:param>
+                                </c:url>
+                                <a href="${catPath}" class="category__item--link">${c.tenLoaiSP}</a>
+                            </li>
+                        </c:forEach>
                     </ul>
                 </nav>
             </div>
@@ -57,6 +58,10 @@
                 </div>
                 <!-- Phần sản phẩm -->
                 <div class="home__product">
+                    <div class="container__title">
+                        <h1 class="container__giohang--title"><a href="../index.html" class="home__home">TRANG
+                                CHỦ /</a> Chi tiết</h1>
+                    </div>
                     <div class="grid__row product-detail">
                         <img src="${product.hinhAnh}" alt="" class="product-detail-img">
                         <div class="product-detail-infor">
@@ -80,7 +85,7 @@
                                 </div>
                             </div>
                             <button onclick="addToCart(${product.idMatHang})"
-                                    class="product-detail-btn">
+                                    class="product-detail-btn" id="Thongbao">
                                 <i class="fas fa-cart-plus product-detail-btn-icon"></i>
                                 Thêm Vào Giỏ Hàng
                             </button>
@@ -90,6 +95,49 @@
                                     Mua ngay
                                 </button>
                             </a>
+                        </div>
+                    </div>
+                    <div class="product__comment--detail">
+                        <div class="product__comment">
+                            <span class="comment__user--comment">Đánh giá sản phẩm</span>
+                            <div class="product__comment--user">
+                                <input type="text" placeholder="Gửi bình luận của bạn..."
+                                       class="product__comment--input" id="commentId">
+                                <br>
+                                <button class="product-comment--button" onclick="addComment(${product.idMatHang})">
+                                    <i class="fa-brands fa-buy-n-large product-detail-btn-icon"></i>
+                                    Gửi bình luận
+                                </button>
+                            </div>
+                        </div>
+                        <div id="commentAral">
+                            <c:forEach items="${product.commentCollection}" var="comment">
+                                <div class="comment__user">
+                                    <div class="comment__user--maggin">
+                                        <img src="<c:url value="/images/1.jpg"/>" alt="" class="comment__user--img">
+                                        <br>
+                                        <div class="comment__user--div my_comment">
+                                            <span class="comment__user--name">TNhan.ITTechnology@gmail.com</span>
+                                            <div class="home__product--items-rating">
+                                                <i class="home__product--items-star-yelown fa-solid fa-star"></i>
+                                                <i class="home__product--items-star-yelown fa-solid fa-star"></i>
+                                                <i class="home__product--items-star-yelown fa-solid fa-star"></i>
+                                                <i class="home__product--items-star-yelown fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <span class="comment__user--phanloai">${comment.content}</span>
+                                            <br>
+                                            <p class="comment__user--time">${comment.createdDate}</p>
+                                            <br>
+                                            <span class="comment__user--huuich"><i class="fa-solid fa-thumbs-up mau"></i>
+                                                Hữu
+                                                ích</span>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="comment__user--duongke"></div>
+                                </div>   
+                            </c:forEach>
                         </div>
                     </div>
                 </div>

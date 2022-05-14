@@ -108,7 +108,6 @@
                         </ul>
                     </li>
                 </c:if>
-
             </ul>
         </nav>
         <div class="header__with--search">

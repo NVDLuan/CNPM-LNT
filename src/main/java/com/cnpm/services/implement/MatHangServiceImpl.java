@@ -33,6 +33,7 @@ public class MatHangServiceImpl implements MatHangService{
 
     @Override
     public MatHang getOne(int id) {
+
         return this.matHangRepository.getOne(id);
     }
 

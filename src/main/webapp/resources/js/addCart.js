@@ -1,16 +1,17 @@
 
 function addToCart(productId){
-    let url = "/CNPM-LNT-spring/api/cart/"+productId;
+    let url = "/CNPM_LNT_spring_war/api/cart/"+productId;
     fetch(url).then(res=>res.json()).then(data=>{
         var count = document.getElementById("cart-count");
         count.innerText= data;
+        alert("Thêm vào giỏ hàng thành công");
     });
 }
 
 function deleteCart(productId){
     var tmp = confirm("bạn có chắc chắn muốn xóa sản phẩm này ra khỏi giỏ hàng không? ");
     if(tmp){
-        let url = "/CNPM-LNT-spring/api/cart/delete/"+productId;
+        let url = "/CNPM_LNT_spring_war/api/cart/delete/"+productId;
         fetch(url).then(res=>res.json()).then(data=>{
             var area = document.getElementById(`giohang--${productId}`);
             area.style.display= "none";
@@ -21,7 +22,7 @@ function deleteCart(productId){
 }
 
 function them(productId){
-    let url = "/CNPM-LNT-spring/api/cart/add/"+productId;
+    let url = "/CNPM_LNT_spring_war/api/cart/add/"+productId;
     console.log(url);
     fetch(url).then(res=>res.json()).then(data=>{
         var area = document.getElementById(`count-cart-${productId}`);
@@ -34,7 +35,7 @@ function them(productId){
 function bot(productId){
     let area = document.getElementById(`count-cart-${productId}`);
     if(parseInt(area.value)>1){
-        let url = "/CNPM-LNT-spring/api/cart/tru/"+productId;
+        let url = "/CNPM_LNT_spring_war/api/cart/tru/"+productId;
         console.log(url);
         fetch(url).then(res=>res.json()).then(data=>{
             var area = document.getElementById(`count-cart-${productId}`);
@@ -44,3 +45,7 @@ function bot(productId){
         })
     }
 }
+// var button = document.getElementById("Thongbao");
+//     button.onclick = function(){
+//     confirm("Thêm vào giỏ hàng thành công");
+// }
