@@ -15,6 +15,7 @@ import java.util.List;
 public interface AccountRepository {
     boolean addAccount(Account acc);
     boolean delete(int id);
+    Account getUserById(int id);
     List<Account> getAccount(String username);
     List<Account> getListAccount();
 

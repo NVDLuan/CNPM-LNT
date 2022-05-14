@@ -120,7 +120,7 @@
                     <source>8</source>
                     <target>8</target>
                     <compilerArguments>
-                        <endorseddirs>${endorsed.dir}</endorseddirs>
+                        <endorseddirs>${endorsed.dir} </endorseddirs>
                     </compilerArguments>
                 </configuration>
             </plugin>
