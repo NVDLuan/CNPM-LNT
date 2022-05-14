@@ -13,6 +13,8 @@ import java.util.Random;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
@@ -85,10 +87,10 @@ public class UserController {
         return "chungthuc";
     }
 
-    @GetMapping("/user/profile")
-    public String profile(Model model){
-        model.addAttribute("myprofile", this.accountService.getProfile());
-        return "profile";
+   
+    @GetMapping("/profilename")
+    public ResponseEntity <Account> getprofile(){
+        return new ResponseEntity<>(this.accountService.getProfile(), HttpStatus.OK);
     }
         
 }

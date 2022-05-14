@@ -93,14 +93,14 @@
                     <li class="header__navbar-item header__navbar-item--hover">
                         <ul class="header__navbar-user-menu" id="hidden" onclick="show();">
                             <li class="header__navbar-user-item">
-                                <c:url value="/user/profile" var="profile"/>
+                                <c:url value="/profile" var="profile"/>
                                 <a href="${profile}">Tài khoản của tôi</a>
                             </li>
                             <li class="header__navbar-user-item">
                                 <a href="">Địa chỉ của tôi</a>
                             </li>
                             <li class="header__navbar-user-item">
-                                <a href="">Đơn mua</a>
+                                <a href="/donhang">Đơn mua</a>
                             </li>
                             <li class="header__navbar-user-item">
                                 <a href="<c:url value="/logout"/>" >Đăng xuất</a>

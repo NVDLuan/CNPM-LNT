@@ -32,6 +32,8 @@ public class HomeController {
     private LoaiSanPhamService loaiSanPhamService;
     @Autowired
     private AddressServices addressServices;
+    @Autowired
+    private AccountService accountService;
 
     @ModelAttribute
     public void attribute(Model model) {
@@ -106,5 +108,9 @@ public class HomeController {
         }
         return "redirect:/address/add";
     }
-
+    @GetMapping("/profile")
+    public String profile(Model model){
+        model.addAttribute("myprofile", this.accountService.getProfile());
+        return "profileUser";
+    }
 }
