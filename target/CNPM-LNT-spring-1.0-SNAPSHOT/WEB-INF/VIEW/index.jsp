@@ -84,14 +84,19 @@
                         <li class="category__item category__item--active">
                             <a href="" class="category__item--link">Sản phẩm</a>
                         </li>
-                         <c:forEach var="c" items="${danhmuc}">
-                            <li class="category__item">
-                                <c:url value="/" var="catPath">
-                                    <c:param name="danhmuc" value="${c.idLoaiSP}"></c:param>
-                                </c:url>
-                                <a href="${catPath}" class="category__item--link">${c.tenLoaiSP}</a>
-                            </li>
+                        <ul>
+                        <c:forEach var="listLSP" items="${danhmuc}">
+                            <li><a>${listLSP.tenNhomSP}</a></li>
+                             <c:forEach var="c" items="${listLSP.loaiSanPham}">
+                                <li class="category__item">
+                                    <c:url value="/" var="catPath">
+                                        <c:param name="danhmuc" value="${c.idLoaiSP}"></c:param>
+                                    </c:url>
+                                    <a href="${catPath}" class="category__item--link">${c.tenLoaiSP}</a>
+                                </li>
+                            </c:forEach>
                         </c:forEach>
+                        </ul>
                     </ul>
                 </nav>
             </div>

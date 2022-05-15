@@ -1,5 +1,6 @@
 function addComment(idMatHang){
-    fetch("/CNPM_LNT_spring/api/add-comment", {
+    let url = "/CNPM_LNT_spring/api/add-comment"
+    fetch(url, {
         method: 'post',
         body: JSON.stringify({
             "content": document.getElementById("commentId").value,

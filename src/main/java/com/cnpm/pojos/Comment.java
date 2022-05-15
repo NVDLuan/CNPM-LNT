@@ -53,6 +53,7 @@ public class Comment implements Serializable {
     private Account idAccount;
     @JoinColumn(name = "IDMatHang", referencedColumnName = "IDMatHang")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private MatHang iDMatHang;
     @Column(name = "created_date")
     @Temporal(javax.persistence.TemporalType.DATE)

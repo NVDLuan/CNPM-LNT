@@ -5,6 +5,7 @@
  */
 package com.cnpm.pojos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
@@ -39,7 +40,8 @@ public class MatHang implements Serializable {
     private int soLuong;
     @Column(name = "ChiTiet")
     private String chiTiet;
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "LoaiSP")
     private LoaiSanPham loaiSP;
 
@@ -48,9 +50,11 @@ public class MatHang implements Serializable {
     @Transient
     private int idLoaiSanPham;
     @OneToMany(mappedBy = "matHang")
+    @JsonIgnore
     private List<Images> listImg;
-    
+
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "iDMatHang")
+    @JsonIgnore
     private Collection<Comment> commentCollection;
 
     public MatHang(String tenMH, String hang, String hinhAnh, int gia, int giaKhuyenMai, int soLuong, String chiTiet, LoaiSanPham loaiSP, int idBanHang) {

@@ -30,9 +30,10 @@ public class ApiCommentController {
         try{
             String content = params.get("content");
             int MatHangId = Integer.parseInt(params.get("idMatHang"));
-
+            System.err.println("==fixbug===");
+            System.err.println(content);
             Comment c = this.commentService.addComment(content, MatHangId);
-            return new ResponseEntity<>(c, HttpStatus.CREATED);
+            return new ResponseEntity<>(c, HttpStatus.OK);
         }catch(Exception ex){
             ex.printStackTrace();
         }

@@ -9,6 +9,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<div class="container">
 <div id = "page-wrapper">
     <table border="1">
         <tr>
@@ -23,4 +24,5 @@
     <c:url value="/user/donhang" var="donhang"/>
     <a href="${donhang}" >Hóa đơn </a>
     <h1> đây là trang web frofile</h1>
+</div>
 </div>

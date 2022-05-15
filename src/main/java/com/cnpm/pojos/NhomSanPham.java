@@ -7,13 +7,7 @@ package com.cnpm.pojos;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  *
@@ -28,7 +22,7 @@ public class NhomSanPham implements Serializable{
     private int idNhomSP;
     @Column(name="TenNhomSP")
     private String tenNhomSP;
-    @OneToMany(mappedBy = "nSP")
+    @OneToMany(mappedBy = "nSP", fetch = FetchType.EAGER)
     private List<LoaiSanPham> loaiSanPham;
     
 

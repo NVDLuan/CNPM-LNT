@@ -43,7 +43,8 @@ public class HomeController {
     private AddressServices addressServices;
     @Autowired
     private AccountService accountService;
-
+    @Autowired
+    private NhomSanPhamService nhomSanPhamService;
     @ModelAttribute
     public void attribute(Model model) {
         if (PersonUsing.getUser() != "anonymousUser") {
@@ -60,7 +61,7 @@ public class HomeController {
             model.addAttribute("listHang", this.matHangService.getListInLSP(id));
         }
         else model.addAttribute("listHang", this.matHangService.getList(kw, page));
-
+        model.addAttribute("danhmuc", this.nhomSanPhamService.getNSP());
         return "index";
     }
 
