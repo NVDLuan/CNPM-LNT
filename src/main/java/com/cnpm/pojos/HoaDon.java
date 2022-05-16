@@ -6,6 +6,8 @@
 package com.cnpm.pojos;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  *
@@ -35,6 +37,25 @@ public class HoaDon {
     private int tinhTrang;
     @Transient
     private int idAddress;
+    private int gia;
+    private Date dateDatHang;
+
+    public Date getDateDatHang() {
+        return dateDatHang;
+    }
+
+    public void setDateDatHang(Date dateDatHang) {
+        this.dateDatHang = dateDatHang;
+    }
+
+    public int getGia() {
+        return gia;
+    }
+
+
+    public void setGia(int gia) {
+        this.gia = gia;
+    }
 
     public int getIdAddress() {
         return idAddress;

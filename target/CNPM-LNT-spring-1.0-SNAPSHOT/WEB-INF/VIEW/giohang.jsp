@@ -47,16 +47,16 @@
                     <div class="price__shares">
                         <div class="shares__items">
                             <div class="price__provisional">Tạm tính</div>
-                            <div class="price__must-return " id="sumMoneytmp">732.000đ</div>
+                            <div class="price__must-return " id="sumMoneytmp">732.000<span>đ</span></div>
                         </div>
                         <div class="duongke"></div>
                         <div class="shares__items">
                             <div class="price__provisional--new">Thành tiền</div>
-                            <div class="price__must-return-items">732.000đ</div>
+                            <div class="price__must-return-items" id="sumMoney"><span>đ</span></div>
                         </div>
                         <p class="vat">(Đã bao gồm thuế VAT nếu có)</p>
                     </div>
-                    <a href="<c:url value="/Thanhtoan"/>"><button class="btn__price--items">Tiến hành đạt hàng</button></a>
+                    <a href="<c:url value="/Thanhtoan/all"/>"><button class="btn__price--items">Tiến hành đạt hàng</button></a>
                     <div class="discount__code">
                         <span class="discount__code--donate">Mã giảm giá / quà tặng</span>
                         <br>

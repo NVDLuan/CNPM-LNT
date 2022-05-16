@@ -5,6 +5,7 @@ function addToCart(productId){
         var count = document.getElementById("cart-count");
         count.innerText= data;
         alert("Thêm vào giỏ hàng thành công");
+
     });
 }
 
@@ -14,9 +15,11 @@ function deleteCart(productId){
         let url = "/CNPM-LNT-spring/api/cart/delete/"+productId;
         fetch(url).then(res=>res.json()).then(data=>{
             var area = document.getElementById(`giohang--${productId}`);
+            area.innerHTML="";
             area.style.display= "none";
             var count = document.getElementById("cart-count");
             count.innerText= data;
+            capnhatSum();
         })
     }
 }
@@ -29,6 +32,7 @@ function them(productId){
         area.value= parseInt(area.value)+1;
         var count = document.getElementById("cart-count");
         count.innerText= data;
+        capnhatSum();
     })
 }
 
@@ -42,10 +46,11 @@ function bot(productId){
             area.value= parseInt(area.value)-1;
             var count = document.getElementById("cart-count");
             count.innerText= data;
+            capnhatSum();
         })
     }
 }
-window.addEventListener("load", function (){
+function capnhatSum (){
     var gia = document.getElementsByClassName("price");
     var counts = document.getElementsByClassName("counter-cart");
     var sum =0;
@@ -54,19 +59,21 @@ window.addEventListener("load", function (){
         sum += parseInt(gia[i].innerText)* parseInt(counts[i].value);
         console.log(sum);
     }
+    document.getElementById("sumMoney").innerText=viewMoney(sum.toString());
     document.getElementById("sumMoneytmp").innerText=viewMoney(sum.toString());
-});
+}
+window.addEventListener("load", capnhatSum());
 function viewMoney(money){
     result ="0đ";
     len = money.length/3;
     console.log(len)
 
-    for(i=0; i<=len; i++){
+    for(i=0; i<len; i++){
         console.log(i);
         if(i==0){
             tmp =money.slice(-3);
             if(tmp!=null){
-                result= tmp+"đ";
+                result= tmp+"VND";
             }
         }
         else{
