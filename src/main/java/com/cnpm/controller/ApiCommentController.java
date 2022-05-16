@@ -33,7 +33,7 @@ public class ApiCommentController {
             System.err.println("==fixbug===");
             System.err.println(content);
             Comment c = this.commentService.addComment(content, MatHangId);
-            return new ResponseEntity<>(c, HttpStatus.OK);
+            return new ResponseEntity<>(c, HttpStatus.CREATED);
         }catch(Exception ex){
             ex.printStackTrace();
         }

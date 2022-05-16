@@ -19,4 +19,6 @@ public interface AccountRepository {
     List<Account> getAccount(String username);
     List<Account> getListAccount();
     Account getProfile();
+
+    boolean updateAvatar(Account acc);
 }

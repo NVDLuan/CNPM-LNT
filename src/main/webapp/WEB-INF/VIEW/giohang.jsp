@@ -27,13 +27,13 @@
                         </div>
                         <div class="container__price">
                             <div class="container__price--items">
-                                <div class="container__price--new">${cart.idMatHang.giaKhuyenMai}đ</div>
+                                <div class="container__price--new price ">${cart.idMatHang.giaKhuyenMai}<span>đ</span></div>
                                 <div class="container__price--old">${cart.idMatHang.gia}đ</div>
                             </div>
                             <div class="container__price--soluong">
                                 <div class="dm_up_down">
                                     <button class="down quantity-change" data-value="-1" onclick="bot(${cart.idGioHang})">-</button>
-                                    <input class="text-center buy-quantity" id="count-cart-${cart.idGioHang}" value="${cart.soLuong}" min="1" size="5">
+                                    <input class="text-center buy-quantity counter-cart" id="count-cart-${cart.idGioHang}" value="${cart.soLuong}" min="1" size="5">
                                     <button class="up quantity-change" data-value="1" onclick="them(${cart.idGioHang})">+</button>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                     <div class="price__shares">
                         <div class="shares__items">
                             <div class="price__provisional">Tạm tính</div>
-                            <div class="price__must-return">732.000đ</div>
+                            <div class="price__must-return " id="sumMoneytmp">732.000đ</div>
                         </div>
                         <div class="duongke"></div>
                         <div class="shares__items">

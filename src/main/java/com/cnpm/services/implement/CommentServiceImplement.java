@@ -34,9 +34,7 @@ public class CommentServiceImplement implements CommentService{
     @Override
     public Comment addComment(String content, int MatHangId) {
         MatHang h = this.matHangReponsitory.getOne(MatHangId);
-//        Account a = this.accountRepository.getProfile();
-        List<Account> list = this.accountRepository.getAccount("luan");
-        Account a = list.get(0);
+        Account a = this.accountRepository.getProfile();
         Comment c = new Comment();
         c.setContent(content);
         c.setIDMatHang(h);

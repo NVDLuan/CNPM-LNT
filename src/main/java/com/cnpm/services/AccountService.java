@@ -25,4 +25,5 @@ public interface AccountService extends UserDetailsService {
     boolean delete(int id);
 
     Account getProfile();
+    boolean updateAvatar(Account acc);
 }

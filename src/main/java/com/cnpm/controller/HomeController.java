@@ -48,6 +48,7 @@ public class HomeController {
     @ModelAttribute
     public void attribute(Model model) {
         if (PersonUsing.getUser() != "anonymousUser") {
+            model.addAttribute("user", this.accountService.getProfile());
             model.addAttribute("cartCounter", this.gioHangServices.count());
         }
     }
@@ -80,7 +81,7 @@ public class HomeController {
     @GetMapping("/Thanhtoan/all")
     public String hoadon(Model model){
 
-        return null;
+        return "Thanhtoan";
     }
 
     @RequestMapping("/chitiet/{id}")
@@ -118,9 +119,5 @@ public class HomeController {
         }
         return "redirect:/address/add";
     }
-    @GetMapping("/profile")
-    public String profile(Model model){
-        model.addAttribute("myprofile", this.accountService.getProfile());
-        return "profileUser";
-    }
+
 }

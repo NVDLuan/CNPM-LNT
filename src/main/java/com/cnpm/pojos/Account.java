@@ -6,6 +6,8 @@
 package com.cnpm.pojos;
 
 import com.cnpm.validator.UsernameAccount;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,6 +39,25 @@ public class Account implements Serializable{
     private String userRole;
     @Transient
     private String repass;
+    private String avatar;
+    @Transient
+    private MultipartFile file;
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public void setAccount(AccountTmp tmp){
         this.user=tmp.getUser();

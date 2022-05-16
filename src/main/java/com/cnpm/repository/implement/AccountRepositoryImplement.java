@@ -5,10 +5,15 @@
  */
 package com.cnpm.repository.implement;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.cnpm.javaUtils.PersonUsing;
 import com.cnpm.pojos.Account;
 import com.cnpm.repository.AccountRepository;
+
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -30,6 +35,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class AccountRepositoryImplement implements AccountRepository{
     @Autowired
     private LocalSessionFactoryBean sessionFactory;
+    @Autowired
+    private Cloudinary cloudinary;
     @Override
     public List<Account> getAccount(String username) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
@@ -53,6 +60,7 @@ public class AccountRepositoryImplement implements AccountRepository{
     public boolean addAccount(Account acc) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         try{
+            acc.setAvatar("");
             session.save(acc);
             return true;
         }
@@ -96,5 +104,20 @@ public class AccountRepositoryImplement implements AccountRepository{
         String user = PersonUsing.getUser();
         List<Account> accounts = this.getAccount(user);
         return accounts.get(0);
+    }
+
+    @Override
+    public boolean updateAvatar(Account acc) {
+        try {
+            Session session = this.sessionFactory.getObject().getCurrentSession();
+            Map result = null;
+            result = this.cloudinary.uploader().upload(acc.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+            acc.setAvatar((String) result.get("secure_url"));
+            session.update(acc);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return false;
     }
 }

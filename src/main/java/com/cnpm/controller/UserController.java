@@ -87,7 +87,19 @@ public class UserController {
         return "chungthuc";
     }
 
-   
+    @GetMapping("/profile")
+    public String profile(Model model){
+        model.addAttribute("myprofile", this.accountService.getProfile());
+        return "profileUser";
+    }
+
+    @PostMapping("/updateAvatar")
+    public String updateAvatar(Model model, @ModelAttribute(value = "myprofile")Account acc ){
+        this.accountService.updateAvatar(acc);
+        model.addAttribute("myprofile", this.accountService.getProfile());
+
+        return "profileUser";
+    }
     @GetMapping("/profilename")
     public ResponseEntity <Account> getprofile(){
         return new ResponseEntity<>(this.accountService.getProfile(), HttpStatus.OK);

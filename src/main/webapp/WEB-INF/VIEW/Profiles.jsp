@@ -21,6 +21,12 @@
             <td>${myprofile.email}</td>
         </tr>
     </table>
+    <c:url value="/updateAvatar" var="acction"/>
+    <%--@elvariable id="myprofile" type="com"--%>
+    <form:form method="post" action="${acction}" modelAttribute="myprofile" enctype="multipart/form-data" role="form" >
+        <form:input path="file" type="file" name=""/>
+        <form:button type="submit" name="lưu" />
+    </form:form>
     <c:url value="/user/donhang" var="donhang"/>
     <a href="${donhang}" >Hóa đơn </a>
     <h1> đây là trang web frofile</h1>

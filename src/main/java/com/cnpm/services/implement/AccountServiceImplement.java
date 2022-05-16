@@ -81,4 +81,13 @@ public class AccountServiceImplement implements AccountService{
         return this.account.getProfile();
     }
 
+    @Override
+    public boolean updateAvatar(Account acc) {
+        Account account1 = this.getProfile();
+        System.err.println("======fix bug======");
+        System.err.println(account1.toString());
+        account1.setFile(acc.getFile());
+        return this.account.updateAvatar(account1);
+    }
+
 }
