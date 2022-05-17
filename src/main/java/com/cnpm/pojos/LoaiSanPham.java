@@ -30,8 +30,7 @@ public class LoaiSanPham implements Serializable {
     private String tenLoaiSP;
     @OneToMany(mappedBy = "loaiSP")
     private List<MatHang> listMatHang;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "loaiSP")
-    public Collection<MatHang> mathangCollection;
+
     @Transient
     private int idNhomsp;
 
@@ -60,16 +59,7 @@ public class LoaiSanPham implements Serializable {
     public int getIdLoaiSP() {
         return idLoaiSP;
     }
-    
-    @XmlTransient
-    public Collection<MatHang> getMathangCollection() {
-        return mathangCollection;
-    }
 
-    public void setMathangCollection(Collection<MatHang> mathangCollection) {
-        this.mathangCollection = mathangCollection;
-    }
-    
     public void setIdLoaiSP(int idLoaiSP) {
         this.idLoaiSP = idLoaiSP;
     }

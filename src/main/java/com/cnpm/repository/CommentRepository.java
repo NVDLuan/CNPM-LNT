@@ -6,6 +6,7 @@
 package com.cnpm.repository;
 
 import com.cnpm.pojos.Comment;
+import java.util.List;
 
 /**
  *
@@ -13,4 +14,6 @@ import com.cnpm.pojos.Comment;
  */
 public interface CommentRepository {
     Comment addComment(Comment c);
+    List<Comment> getComment();
+    boolean delete(int id);
 }

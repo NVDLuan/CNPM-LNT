@@ -8,18 +8,7 @@ package com.cnpm.pojos;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -49,7 +38,7 @@ public class Comment implements Serializable {
     @Column(name = "content")
     private String content;
     @JoinColumn(name = "IdAccount", referencedColumnName = "IdAccount")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Account idAccount;
     @JoinColumn(name = "IDMatHang", referencedColumnName = "IDMatHang")
     @ManyToOne(optional = false)

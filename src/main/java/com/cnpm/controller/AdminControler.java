@@ -8,10 +8,8 @@ package com.cnpm.controller;
 import com.cnpm.pojos.LoaiSanPham;
 import com.cnpm.pojos.MatHang;
 import com.cnpm.pojos.NhomSanPham;
-import com.cnpm.services.AccountService;
-import com.cnpm.services.LoaiSanPhamService;
-import com.cnpm.services.MatHangService;
-import com.cnpm.services.NhomSanPhamService;
+import com.cnpm.services.*;
+
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +40,8 @@ public class AdminControler {
     private LoaiSanPhamService loaiSanPhamService;
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private CommentService commentService;
     @GetMapping("/themsanpham")
     public String addMatHang(Model model){
         model.addAttribute("mathang", new MatHang());
@@ -79,7 +79,25 @@ public class AdminControler {
             return "addNhomSanPham";
         }
     }
-    
+
+    @GetMapping("/comment")
+    public String ViewComment(Model model){
+        model.addAttribute("viewcm", this.commentService.getComment());
+        return "comment";
+    }
+
+    @GetMapping("/hoadon")
+    public String ViewHoadon(Model model){
+        //model.addAttribute("viewhd", this.commentService.getComment());
+        return "hoadon";
+    }
+
+    @GetMapping("/deleteComment/{id}")
+    public String deleteComment(@PathVariable int id) {
+        this.commentService.delete(id);
+        return "redirect:/admin/comment";
+    }
+
     @GetMapping("/loaisanpham")
     public String addLoaiSanPham(Model model){
         List<NhomSanPham> listNSP = this.nhomSanPhamService.getNSP();

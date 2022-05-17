@@ -73,5 +73,13 @@ and open the template in the editor.
         <put-attribute name="title" value="Loai sản phẩm"/>
         <put-attribute name="content" value="/WEB-INF/VIEW/loaisanpham.jsp"/>
     </definition>
+    <definition name="comment" extends="baseAdmin">
+        <put-attribute name="title" value="Comment"/>
+        <put-attribute name="content" value="/WEB-INF/VIEW/comment.jsp"/>
+    </definition>
+    <definition name="hoadon" extends="baseAdmin">
+        <put-attribute name="title" value="Loai sản phẩm"/>
+        <put-attribute name="content" value="/WEB-INF/VIEW/hoadon.jsp"/>
+    </definition>
 
 </tiles-definitions>
