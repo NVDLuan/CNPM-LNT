@@ -6,6 +6,9 @@
 package com.cnpm.services;
 
 import com.cnpm.pojos.Comment;
+import com.cnpm.pojos.MatHang;
+
+import java.util.List;
 
 /**
  *
@@ -13,5 +16,5 @@ import com.cnpm.pojos.Comment;
  */
 public interface CommentService {
     Comment addComment(String content, int MatHangId);
-    
+    List<Comment> list(int matHang, int page);
 }

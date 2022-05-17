@@ -53,7 +53,7 @@ public class MatHang implements Serializable {
     @JsonIgnore
     private List<Images> listImg;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "iDMatHang")
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "iDMatHang")
     @JsonIgnore
     private Collection<Comment> commentCollection;
 

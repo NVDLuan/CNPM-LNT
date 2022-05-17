@@ -8,10 +8,6 @@ package com.cnpm.controller;
 import com.cnpm.javaUtils.PersonUsing;
 import com.cnpm.pojos.*;
 import com.cnpm.services.*;
-import com.cnpm.pojos.Account;
-import com.cnpm.pojos.LoaiSanPham;
-import com.cnpm.pojos.MatHang;
-import com.cnpm.pojos.NhomSanPham;
 import com.cnpm.services.AccountService;
 import com.cnpm.services.GioHangServices;
 import com.cnpm.services.LoaiSanPhamService;
@@ -25,7 +21,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +45,8 @@ public class HomeController {
     private NhomSanPhamService nhomSanPhamService;
     @Autowired
     private HoaDonServices hoaDonServices;
+    @Autowired
+    private CommentService commentService;
     @ModelAttribute
     public void attribute(Model model) {
         if (PersonUsing.getUser() != "anonymousUser") {
@@ -82,7 +79,7 @@ public class HomeController {
     @RequestMapping("/chitiet/{id}")
     public String chitiet(Model model, @PathVariable(value = "id") Integer id) {
         model.addAttribute("product", this.matHangService.getOne(id));
-        model.addAttribute("hoadon", new HoaDon());
+        model.addAttribute("listComment",this.commentService.list(id,0));
         model.addAttribute("danhmuc", this.loaiSanPhamService.getList());
         return "chitiet";
     }
@@ -92,6 +89,7 @@ public class HomeController {
         model.addAttribute("productListA", this.gioHangServices.get());
         model.addAttribute("diachi", this.addressServices.listDiaChi());
         model.addAttribute("hoadon", new HoaDon());
+        session.setAttribute("cart", this.gioHangServices.get());
         return "Thanhtoan";
     }
 
@@ -127,7 +125,7 @@ public class HomeController {
     }
     @PostMapping("/dathang/all")
     public String datHangAll(Model model, @ModelAttribute(value="hoadon") HoaDon hoaDon, HttpSession session){
-        if(this.hoaDonServices.thanhtoan(this.gioHangServices.get(),hoaDon))
+        if(this.hoaDonServices.thanhtoan((List<GioHang>) session.getAttribute("cart"),hoaDon))
         return "redirect:/";
         else return "redirect:/Thanhtoan/all";
     }
@@ -135,5 +133,10 @@ public class HomeController {
     public String datHangID(Model model, @ModelAttribute(value="hoadon") HoaDon hoaDon, @PathVariable(value = "id")Integer id){
         if(this.hoaDonServices.thanhtoan(this.matHangService.getOne(id), hoaDon))return "redirect:/";
         else return "redirect:/Thanhtoan/"+id;
+    }
+    @GetMapping("/hoadon")
+    public String hoadonthanhtoan(Model model, HttpSession session){
+        model.addAttribute("hoadon", (List<GioHang>) session.getAttribute("cart"));
+        return "hoadon";
     }
 }

@@ -1407,7 +1407,8 @@ i.home__product--items-like-icon-nolike{
     margin-bottom: 10px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);
     border-radius: 5px;
-    height: 200px;
+    height: auto;
+    padding: 15px;
 }
 .marginn{
     margin-bottom: 40px;

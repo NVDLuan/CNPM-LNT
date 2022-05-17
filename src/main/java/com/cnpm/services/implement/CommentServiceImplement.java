@@ -47,4 +47,9 @@ public class CommentServiceImplement implements CommentService{
         return this.commentRepository.addComment(c);
     }
 
+    @Override
+    public List<Comment> list(int matHang, int page) {
+        return this.commentRepository.list(this.matHangReponsitory.getOne(matHang), page);
+    }
+
 }
