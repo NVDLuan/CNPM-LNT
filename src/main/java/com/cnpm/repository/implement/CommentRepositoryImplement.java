@@ -42,6 +42,26 @@ public class CommentRepositoryImplement implements CommentRepository{
     }
 
     @Override
+    public List<Comment> getComment() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("From Comment");
+        return q.getResultList();
+    }
+
+
+    @Override
+    public boolean delete(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            Comment comment = session.get(Comment.class, id);
+            session.delete(comment);
+            return true;
+        } catch (HibernateException e) {
+            System.err.println(e.toString());
+            return false;
+        }
+    }
+
     public List<Comment> list(MatHang matHang, int page) {
         Session session= this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();

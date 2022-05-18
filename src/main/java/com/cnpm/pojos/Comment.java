@@ -38,7 +38,8 @@ public class Comment implements Serializable {
     @Column(name = "content")
     private String content;
     @JoinColumn(name = "IdAccount", referencedColumnName = "IdAccount")
-    @ManyToOne(optional = false,  fetch = FetchType.EAGER)
+
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Account idAccount;
     @JoinColumn(name = "IDMatHang", referencedColumnName = "IDMatHang")
     @ManyToOne(optional = false)

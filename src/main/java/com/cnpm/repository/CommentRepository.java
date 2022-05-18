@@ -6,6 +6,7 @@
 package com.cnpm.repository;
 
 import com.cnpm.pojos.Comment;
+
 import com.cnpm.pojos.MatHang;
 
 import java.util.List;
@@ -16,5 +17,7 @@ import java.util.List;
  */
 public interface CommentRepository {
     Comment addComment(Comment c);
+    List<Comment> getComment();
+    boolean delete(int id);
     List<Comment> list(MatHang matHang, int page);
 }

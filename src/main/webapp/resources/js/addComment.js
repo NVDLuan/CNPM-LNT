@@ -24,6 +24,7 @@ function addComment(idMatHang){
         area.innerHTML = `
         <div class="comment__user">
                                 <div class="comment__user--maggin">
+
                                     
                                     <img src="`+link+`" alt="" class="comment__user--img">
                                     

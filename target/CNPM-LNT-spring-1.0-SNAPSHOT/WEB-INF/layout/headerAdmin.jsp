@@ -129,6 +129,12 @@
                 <li>
                     <a href="<c:url value="/admin/taikhoan"/> "><i class="fa-solid fa-square-plus"></i>Danh sách tài khoản</a>
                 </li>
+                <li>
+                    <a href="<c:url value="/admin/comment"/> "><i class="fa-brands fa-product-hunt"></i>Danh sách Comment</a>
+                </li>
+                <li>
+                    <a href="<c:url value="/admin/hoadon"/> "><i class="fa-solid fa-square-plus"></i>Danh sách Hóa đơn</a>
+                </li>
             </ul>
         </div>
     </div>
