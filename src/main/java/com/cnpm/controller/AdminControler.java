@@ -86,10 +86,10 @@ public class AdminControler {
         return "comment";
     }
 
-    @GetMapping("/hoadon")
+    @GetMapping("/donDatHang")
     public String ViewHoadon(Model model){
         //model.addAttribute("viewhd", this.commentService.getComment());
-        return "hoadon";
+        return "donDatHang";
     }
 
     @GetMapping("/deleteComment/{id}")

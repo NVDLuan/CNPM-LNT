@@ -14,6 +14,8 @@ import java.util.List;
  */
 public interface CommentService {
     Comment addComment(String content, int MatHangId);
+
     List<Comment> getComment();
     boolean delete(int id);
+    List<Comment> list(int matHang, int page);
 }

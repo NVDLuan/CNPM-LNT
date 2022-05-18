@@ -16,41 +16,41 @@
                     <div class="slideshow-container">
                         <div class="mySlides fade align">
                             <img src="<c:url value="/images/1.jpg"/>" class="mySlider__slider">
-                            <div class="text">Nội dung</div>
+
                         </div>
 
                         <div class="mySlides fade align">
                             <img src="<c:url value="/images/2.png"/>" class="mySlider__slider">
-                            <div class="text">Nội dung</div>
+
                         </div>
 
                         <div class="mySlides fade align">
                             <img src="<c:url value="/images/3.png"/>" class="mySlider__slider">
-                            <div class="text">Nội dung</div>
+
                         </div>
                         <div class="mySlides fade align">
                             <img src="<c:url value="/images/4.png"/>" class="mySlider__slider">
-                            <div class="text">Nội dung</div>
+
                         </div>
                         <div class="mySlides fade align">
                             <img src="<c:url value="/images/5.png"/>" class="mySlider__slider">
-                            <div class="text">Nội dung</div>
+
                         </div>
                         <div class="mySlides fade align">
                             <img src="<c:url value="/images/6.png"/>" class="mySlider__slider">
-                            <div class="text">Nội dung</div>
+
                         </div>
                         <div class="mySlides fade align">
                             <img src="<c:url value="/images/7.png"/>" class="mySlider__slider">
-                            <div class="text">Nội dung</div>
+
                         </div>
                         <div class="mySlides fade align">
                             <img src="<c:url value="/images/8.png"/>" class="mySlider__slider">
-                            <div class="text">Nội dung</div>
+
                         </div>
                         <div class="mySlides fade align">
                             <img src="<c:url value="/images/9.png"/>" class="mySlider__slider">
-                            <div class="text">Nội dung</div>
+
                         </div>
                     </div>
                     <br>

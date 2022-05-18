@@ -26,8 +26,14 @@
 <body>
 <main role="main">
     <div class="container mt-4">
+        <c:if test="${productListA!=null}">
+            <c:url var="action" value="/dathang/all"/>
+        </c:if>
+        <c:if test="${product!=null}">
+            <c:url var="action" value="/dathang/${product.idMatHang}"/>
+        </c:if>
         <form:form class="needs-validation" name="frmthanhtoan" method="post"
-              action="#" modelAttribute="hoadon">
+              action="${action}" modelAttribute="hoadon">
 
             <div class="py-5 text-center">
                 <i class="fa fa-credit-card fa-4x" aria-hidden="true"></i>
@@ -53,9 +59,27 @@
                         <span class="badge badge-secondary badge-pill">2</span>
                     </h4>
                     <ul class="list-group mb-3">
+                        <c:if test="${productListA!=null}" >
+                        <c:forEach var="li" items="${productListA}">
                         <input type="hidden" name="sanphamgiohang[1][sp_ma]" value="2">
                         <input type="hidden" name="sanphamgiohang[1][gia]" value="11800000.00">
                         <input type="hidden" name="sanphamgiohang[1][soluong]" value="2">
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">${li.idMatHang.tenMH}</h6>
+                                    <small class="text-muted">${li.idMatHang.giaKhuyenMai}</small>
+                                </div>
+                                <span class="text-muted">${li.idMatHang.gia}</span>
+                            </li>
+                        <input type="hidden" name="sanphamgiohang[2][sp_ma]" value="4">
+                        <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
+                        <input type="hidden" name="sanphamgiohang[2][soluong]" value="8">
+                        </c:forEach>
+                        </c:if>
+                        <c:if test="${product!=null}">
+                            <input type="hidden" name="sanphamgiohang[1][sp_ma]" value="2">
+                            <input type="hidden" name="sanphamgiohang[1][gia]" value="11800000.00">
+                            <input type="hidden" name="sanphamgiohang[1][soluong]" value="2">
                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                 <div>
                                     <h6 class="my-0">${product.tenMH}</h6>
@@ -63,10 +87,10 @@
                                 </div>
                                 <span class="text-muted">${product.gia}</span>
                             </li>
-                        <input type="hidden" name="sanphamgiohang[2][sp_ma]" value="4">
-                        <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
-                        <input type="hidden" name="sanphamgiohang[2][soluong]" value="8">
-
+                            <input type="hidden" name="sanphamgiohang[2][sp_ma]" value="4">
+                            <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
+                            <input type="hidden" name="sanphamgiohang[2][soluong]" value="8">
+                        </c:if>
                         <li class="list-group-item d-flex justify-content-between">
                             <span>Tổng thành tiền</span>
                             <strong>143520000</strong>

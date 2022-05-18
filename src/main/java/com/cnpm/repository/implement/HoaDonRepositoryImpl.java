@@ -5,6 +5,7 @@ import com.cnpm.pojos.Account;
 import com.cnpm.pojos.HoaDon;
 import com.cnpm.repository.AccountRepository;
 import com.cnpm.repository.HoaDonRepository;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -28,12 +29,14 @@ public class HoaDonRepositoryImpl implements HoaDonRepository {
 
     @Override
     public boolean add(HoaDon hoaDon) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
-        String user = PersonUsing.getUser();
-        List<Account> accounts = this.accountRepository.getAccount(user);
-        hoaDon.setIdKhachHang(accounts.get(0));
-        session.save(hoaDon);
-        return true;
+        try {
+            Session session = this.sessionFactory.getObject().getCurrentSession();
+            session.save(hoaDon);
+            return true;
+        }catch (HibernateException e){
+            System.err.println(e.toString());
+            return false;
+        }
 
     }
 
@@ -52,14 +55,13 @@ public class HoaDonRepositoryImpl implements HoaDonRepository {
     }
 
     @Override
-    public List<HoaDon> getList() {
+    public List<HoaDon> getList() {// day la hoa don cua nguoi dung
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery query = builder.createQuery(HoaDon.class);
         Root root = query.from(HoaDon.class);
         query = query.select(root);
-        String user = PersonUsing.getUser();
-        List<Account> acc = this.accountRepository.getAccount(user);
+        List<Account> acc = this.accountRepository.getAccount(PersonUsing.getUser());
         Predicate p = builder.equal(root.get("idKhachHang").as(Account.class),acc.get(0));
         query =query.where(p);
         Query q = session.createQuery(query);
@@ -71,5 +73,14 @@ public class HoaDonRepositoryImpl implements HoaDonRepository {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         session.update(hoaDon);
         return true;
+    }
+
+    @Override
+    public List<HoaDon> getListAdmin(int page) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("FROM HoaDon .class");
+        q.setMaxResults(10);
+        q.setFirstResult(page*10);
+        return q.getResultList();
     }
 }

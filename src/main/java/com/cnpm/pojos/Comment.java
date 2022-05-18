@@ -38,6 +38,7 @@ public class Comment implements Serializable {
     @Column(name = "content")
     private String content;
     @JoinColumn(name = "IdAccount", referencedColumnName = "IdAccount")
+
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Account idAccount;
     @JoinColumn(name = "IDMatHang", referencedColumnName = "IDMatHang")
@@ -45,7 +46,6 @@ public class Comment implements Serializable {
     @JsonIgnore
     private MatHang iDMatHang;
     @Column(name = "created_date")
-    @Temporal(javax.persistence.TemporalType.DATE)
     private Date createdDate;
 
     public void setCreatedDate(Date createdDate) {

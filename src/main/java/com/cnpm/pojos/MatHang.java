@@ -52,7 +52,6 @@ public class MatHang implements Serializable {
     @OneToMany(mappedBy = "matHang")
     @JsonIgnore
     private List<Images> listImg;
-
     @OneToMany(cascade = CascadeType.DETACH,fetch = FetchType.EAGER, mappedBy = "iDMatHang")
     @JsonIgnore
     private Collection<Comment> commentCollection;
