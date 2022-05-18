@@ -78,9 +78,7 @@ public class HoaDonRepositoryImpl implements HoaDonRepository {
     @Override
     public List<HoaDon> getListAdmin(int page) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
-        Query q = session.createQuery("FROM HoaDon .class");
-        q.setMaxResults(10);
-        q.setFirstResult(page*10);
+        Query q = session.createQuery("FROM HoaDon");
         return q.getResultList();
     }
 }

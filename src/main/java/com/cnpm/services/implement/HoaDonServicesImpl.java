@@ -87,4 +87,9 @@ public class HoaDonServicesImpl implements HoaDonServices {
         if(this.add(hoaDon)) return true;
         return false;
     }
+
+    @Override
+    public List<HoaDon> getListAdmin(int page) {
+        return this.hoaDonRepository.getListAdmin(page);
+    }
 }

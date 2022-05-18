@@ -37,14 +37,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach begin="1" end="6">
+                <c:forEach items="${listHoaDon}" var="hoadon">
                   <tr class="odd gradeX">
-                    <td>1</td>
-                    <td>4</td>
-                    <td>22</td>
-                    <td>15000</td>
-                    <td>Hư hỏng nặng</td>
-                    <td>Đà Nẵng</td>
+                    <td>${hoadon.idHoaDon}</td>
+                    <td>${hoadon.diaChi.name}</td>
+                    <td>${hoadon.idMatHang.tenMH}</td>
+                    <td>${hoadon.soLuong}</td>
+                    <td>${hoadon.tongTien}</td>
+                    <td>${hoadon.tinhTrang}</td>
+                    <td>${hoadon.diaChi.address}</td>
                     <td><a href="<c:url value="/admin/deleteHoadon/${comment.idComment}"/>" onclick="return confirm('bạn có chắc chắn không? ');">delete</a></td>
                   </tr>
                 </c:forEach>

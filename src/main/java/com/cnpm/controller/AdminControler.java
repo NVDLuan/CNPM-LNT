@@ -42,6 +42,8 @@ public class AdminControler {
     private AccountService accountService;
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private HoaDonServices hoaDonServices;
     @GetMapping("/themsanpham")
     public String addMatHang(Model model){
         model.addAttribute("mathang", new MatHang());
@@ -88,7 +90,7 @@ public class AdminControler {
 
     @GetMapping("/donDatHang")
     public String ViewHoadon(Model model){
-        //model.addAttribute("viewhd", this.commentService.getComment());
+        model.addAttribute("listHoaDon", this.hoaDonServices.getListAdmin(0));
         return "donDatHang";
     }
 

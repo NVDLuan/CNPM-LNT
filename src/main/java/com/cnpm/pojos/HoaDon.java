@@ -29,7 +29,7 @@ public class HoaDon {
     @Column(name="SoLuong")
     private int soLuong;
     @JoinColumn(name="diachi")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private DiaChi diaChi;
     @Column(name="TongTien")
     private int tongTien;
