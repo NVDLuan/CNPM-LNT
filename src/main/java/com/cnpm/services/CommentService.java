@@ -7,11 +7,14 @@ package com.cnpm.services;
 
 import com.cnpm.pojos.Comment;
 
+import java.util.List;
+
 /**
  *
  * @author ACER
  */
 public interface CommentService {
     Comment addComment(String content, int MatHangId);
-    
+    List<Comment> getComment();
+    boolean delete(int id);
 }

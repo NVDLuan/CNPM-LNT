@@ -1,4 +1,12 @@
-/*Phần user khi hover*/
+.input-img-img{
+    width: 25%;
+    height: 25%;
+}
+
+/*binh luạn thêm*/
+.comment__user--div.my_comment {
+    margin-right: 30px;
+}
 .header__navbar-user-menu {
     position: absolute;
     padding-left: 0;
@@ -15,7 +23,13 @@
 #hidden{
     display: none;
 }
-
+.header__navbar-user-item a {
+    text-decoration: none;
+    color: #666;
+    font-size: 1.4rem;
+    display: block;
+    padding: 8px 16px;
+}
 .header__navbar-user-menu::before{
     content: "";
     border-width: 18px 22px;
@@ -43,6 +57,7 @@
     list-style: none;
     margin: 5px 5px;
     font-size: 1.4rem;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.05);
     color: var(--text_color);
 }
 .header__navbar-user-item a:hover{
@@ -444,6 +459,25 @@
 .header__cart{
     width: 150px;
     text-align: center;
+    cursor: pointer;
+    position: relative;
+
+}
+.header__cart-notice {
+    position: absolute;
+    background-color: #fff;
+    color: #fe6433;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    font-weight: 500;
+    padding-bottom: 1px;
+    padding-top: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 10px;
+    border: 1px solid;
+    top: 18px;
+    left: 83px;
 }
 .header__cart--icon{
     color: var(--white_color);
@@ -456,7 +490,7 @@
     border: none;
     outline: none;
     font-size: 1.4rem;
-    color: --white_color;
+    color: var(--text_color);
     padding: 0 12px;
     border-radius: 3px;
 }
@@ -517,9 +551,11 @@
     position: relative;
     top: -1px;
 }
+/* Phần memu đa cấp */
 .category__list{
     padding: 0 0 8px 0;
     list-style: none;
+    z-index: 1;
 }
 .category__item--active .category__item--link{
     color: var(--primary_color);
@@ -529,11 +565,79 @@
     color: var(--text_color);
     text-decoration: none;
     display: block;
-    padding: 8px 20px;
+    padding: 2px 10px;
+
+}
+.category__item--link--border{
+    border-top: 1px solid #ccc;
 }
 .category__item--link:hover{
     color: var(--primary_color);
 }
+
+.category>.category__item li {
+    list-style: none;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #333;
+}
+
+.category>.category__item .category__item--link a {
+    display: block;
+    padding: 0 25px;
+    line-height: 50px;
+    color: #f1f2f3;
+    text-decoration: none;
+}
+
+.category, .category__item, .category__item--link:first-child {
+    border-left: none;
+}
+
+.category>ul li:first-child a {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+/*menu con*/
+/*Ẩn các menu con cấp 1,2,3*/
+.category li ul {
+    display: none;
+    min-width: 350px;
+    position: absolute;
+}
+
+.category li>ul li {
+    width: 50%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background: #f7f7f7;
+    text-align: left;
+    margin-left: 150px;
+}
+
+.category li>ul li:first-child a {
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.category li>ul li:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.category li>ul li:last-child a {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/*khi hover thì hiện menu con*/
+.category li:hover>ul {
+    display: block;
+}
+
+.category__item:hover>.category__list{
+    display: block;
+}
+
 /* Home zshop */
 .home__product{
     margin-bottom: 10px;
@@ -1419,6 +1523,10 @@ i.home__product--items-like-icon-nolike{
     float: left;
 
 }
+.container__product--name-name{
+    margin-top: 15px;
+    font-size: 1.8rem;
+}
 .container__img{
     margin-left: 10px;
     margin-top: 15px;
@@ -1432,26 +1540,45 @@ i.home__product--items-like-icon-nolike{
 }
 .container__name-product{
     float: left;
-    margin-top: 26px;
     margin-left: 10px;
     width: 350px;
-    font-size: 1.4rem;
-    font-weight: 1.6rem;
-    color: var(--text_color);
     vertical-align: center;
-
+    margin-top: 0;
+}
+.container__product--title{
+    font-size: 1.4rem;
+    color: var(--text_color);
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.container__product--title--hang{
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
 }
 .container__product{
-
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--text_color);
+    line-height: 2rem;
+    height: 4rem;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    margin-bottom: 12px;
 }
 .container__product--button-delete{
     text-decoration: none;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
     color: rgba(3, 19, 248, 0.877);
 }
 .container__product--button-buy{
     text-decoration: none;
     margin-left: 15px;
+    font-size: 1.4rem;
     color: rgba(3, 19, 248, 0.877);
 
 }
@@ -1529,7 +1656,6 @@ i.home__product--items-like-icon-nolike{
 .text-center{
     text-align: center;
 }
-/* heheh */
 /* phan thanh toán */
 .into__monney{
     margin-top: 50px;

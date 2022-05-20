@@ -8,10 +8,8 @@ package com.cnpm.controller;
 import com.cnpm.pojos.LoaiSanPham;
 import com.cnpm.pojos.MatHang;
 import com.cnpm.pojos.NhomSanPham;
-import com.cnpm.services.AccountService;
-import com.cnpm.services.LoaiSanPhamService;
-import com.cnpm.services.MatHangService;
-import com.cnpm.services.NhomSanPhamService;
+import com.cnpm.services.*;
+
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +40,10 @@ public class AdminControler {
     private LoaiSanPhamService loaiSanPhamService;
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private CommentService commentService;
+    @Autowired
+    private HoaDonServices hoaDonServices;
     @GetMapping("/themsanpham")
     public String addMatHang(Model model){
         model.addAttribute("mathang", new MatHang());
@@ -113,9 +115,7 @@ public class AdminControler {
     
     @RequestMapping("/sanpham")
     public String danhsachsanpham(Model model, @RequestParam(required = false) Map<String, String> param){
-        int page = Integer.parseInt(param.getOrDefault("page", "1"));
-        int count = Integer.parseInt(param.getOrDefault("count", "20"));
-        model.addAttribute("list", this.matHangService.getList(count, page));
+        model.addAttribute("list", this.matHangService.getList(param.getOrDefault("kw", ""), Integer.parseInt(param.getOrDefault("page", "1"))));
         return "sanpham";
     }
 //    Phần tài khoản
@@ -134,11 +134,23 @@ public class AdminControler {
         
         return "taikhoan";
     }
-//    @RequestMapping("/taikhoan")
-//    public String showuser(Model model){
-//        model.addAttribute("user", new Account());
-//        return "header";
-//    }
+    @GetMapping("/comment")
+    public String ViewComment(Model model){
+        model.addAttribute("viewcm", this.commentService.getComment());
+        return "comment";
+    }
+
+    @GetMapping("/hoadon")
+    public String ViewHoadon(Model model){
+       model.addAttribute("viewhd", this.hoaDonServices.getList());
+        return "hoadon";
+    }
+
+    @GetMapping("/deleteComment/{id}")
+    public String deleteComment(@PathVariable int id) {
+        this.commentService.delete(id);
+        return "redirect:/admin/comment";
+    }
     @GetMapping("/deleteAccount/{id}")
     public String deleteAccount(@PathVariable int id) {
         this.accountService.delete(id);

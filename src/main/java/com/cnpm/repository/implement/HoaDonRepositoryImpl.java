@@ -56,16 +56,19 @@ public class HoaDonRepositoryImpl implements HoaDonRepository {
 
     @Override
     public List<HoaDon> getList() {
+//        Session session = this.sessionFactory.getObject().getCurrentSession();
+//        CriteriaBuilder builder = session.getCriteriaBuilder();
+//        CriteriaQuery query = builder.createQuery(HoaDon.class);
+//        Root root = query.from(HoaDon.class);
+//        query = query.select(root);
+//        String user = PersonUsing.getUser();
+//        List<Account> acc = this.accountRepository.getAccount(user);
+//        Predicate p = builder.equal(root.get("idKhachHang").as(Account.class),acc.get(0));
+//        query =query.where(p);
+//        Query q = session.createQuery(query);
+//        return q.getResultList();
         Session session = this.sessionFactory.getObject().getCurrentSession();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery query = builder.createQuery(HoaDon.class);
-        Root root = query.from(HoaDon.class);
-        query = query.select(root);
-        String user = PersonUsing.getUser();
-        List<Account> acc = this.accountRepository.getAccount(user);
-        Predicate p = builder.equal(root.get("idKhachHang").as(Account.class),acc.get(0));
-        query =query.where(p);
-        Query q = session.createQuery(query);
+        Query q = session.createQuery("From HoaDon");
         return q.getResultList();
     }
 

@@ -102,12 +102,11 @@
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search">
                     <div class="input-group custom-search-form">
-                        <input type="text" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </span>
+                        <c:url var="action" value="/admin/sanpham" />
+                        <form method="get" action="${action}"  class="example" action="">
+                            <input type="text" name="kw" placeholder="Search.." name="search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
                     </div>
                     <!-- /input-group -->
                 </li>
@@ -128,6 +127,12 @@
                 </li>
                 <li>
                     <a href="<c:url value="/admin/taikhoan"/> "><i class="fa-solid fa-square-plus"></i>Danh sách tài khoản</a>
+                </li>
+                <li>
+                    <a href="<c:url value="/admin/comment"/> "><i class="fa-brands fa-product-hunt"></i>Danh sách Comment</a>
+                </li>
+                <li>
+                    <a href="<c:url value="/admin/hoadon"/> "><i class="fa-solid fa-square-plus"></i>Danh sách Hóa đơn</a>
                 </li>
             </ul>
         </div>

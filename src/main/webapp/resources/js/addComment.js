@@ -21,10 +21,10 @@ function addComment(idMatHang){
         area.innerHTML = `
         <div class="comment__user">
                                 <div class="comment__user--maggin">
-                                    <img src="<c:url value="/images/1.jpg"/>" alt="" class="comment__user--img">
+                                    <img src="data" alt="" class="comment__user--img">
                                     <br>
                                     <div class="comment__user--div my_comment">
-                                        <span class="comment__user--name">TNhan.ITTechnology@gmail.com</span>
+                                        <span class="comment__user--name">Thanhnhaan</span>
                                         <div class="home__product--items-rating">
                                             <i class="home__product--items-star-yelown fa-solid fa-star"></i>
                                             <i class="home__product--items-star-yelown fa-solid fa-star"></i>
@@ -34,7 +34,7 @@ function addComment(idMatHang){
                                         </div>
                                         <span class="comment__user--phanloai">${data.content}</span>
                                         <br>
-                                        <p class="comment__user--time">${moment(data.createdDate).fromNow()}</p>
+                                        <p class="comment__user--time">${moment(data.createdDate).subtract(3, 'days').calendar()}</p>
                                         <br>
                                         <span class="comment__user--huuich"><i class="fa-solid fa-thumbs-up mau"></i>
                                             Hữu

@@ -47,7 +47,7 @@
                                                 <tr class="odd gradeX">
                                                     <td class="center">${product.idMatHang}</td>
                                                     <td class="center">${product.tenMH}</td>
-                                                    <td class="center"><img src="${product.hinhAnh}" style="width: 330px;
+                                                    <td class="center"><img src="${product.hinhAnh}" style="width: 108px;
                                                              height: 80px;
                                                              background-position: center; /* Center the image */
                                                              background-repeat: no-repeat; /* Do not repeat the image */
@@ -66,6 +66,15 @@
                                 </div>
                                 <!-- /.table-responsive -->
                             </div>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                    <li class="page-item"><a class="page-link" href="<c:url value="/admin/sanpham"/>?page=1">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="<c:url value="/admin/sanpham"/>?page=2">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="<c:url value="/admin/sanpham"/>?page=3">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="<c:url value="/admin/sanpham"/>?page=4">Next</a></li>
+                                </ul>
+                            </nav>
                             <!-- /.col-lg-4 (nested) -->
                             <div class="col-lg-8">
                                 <div id="morris-bar-chart"></div>

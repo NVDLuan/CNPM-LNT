@@ -14,6 +14,9 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Query;
+import java.util.List;
+
 /**
  *
  * @author ACER
@@ -34,6 +37,26 @@ public class CommentRepositoryImplement implements CommentRepository{
             e.printStackTrace();
         }
         return null;
+    }
+    @Override
+    public List<Comment> getComment() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("From Comment");
+        return q.getResultList();
+    }
+
+
+    @Override
+    public boolean delete(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            Comment comment = session.get(Comment.class, id);
+            session.delete(comment);
+            return true;
+        } catch (HibernateException e) {
+            System.err.println(e.toString());
+            return false;
+        }
     }
     
 }

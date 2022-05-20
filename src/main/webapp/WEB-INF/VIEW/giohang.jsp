@@ -17,9 +17,10 @@
                                 <img src="${cart.idMatHang.hinhAnh}" alt="" class="container__img">
                             </div>
                             <div class="container__name-product">
-                                <span class="container__product">${cart.idMatHang.tenMH}</span>
-                                <p class="container__product--title">${cart.idMatHang.chiTiet}</p>
-                                <p class="container__product--title">${cart.idMatHang.hang}</p>
+                                <h3 class="container__product--name-name">${cart.idMatHang.tenMH}</h3>
+                                <h4 class="container__product">${cart.idMatHang.chiTiet}</h4>
+                                <p class="container__product--title">Số lượng hàng còn ${cart.idMatHang.soLuong}</p>
+                                <p class="container__product--title--hang">${cart.idMatHang.hang}</p>
                                 <a href="javascript:;" class="container__product--button-delete" onclick="deleteCart(${cart.idGioHang})">Xóa</a>
                                 <a href="" class="container__product--button-buy">Để giành mua sau</a>
                             </div>

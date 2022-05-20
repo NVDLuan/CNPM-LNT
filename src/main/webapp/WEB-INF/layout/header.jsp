@@ -157,9 +157,12 @@
                     <i class="search__icon--btn-icon fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
-            <div class="header__cart">
-                <a href="<c:url value="/cart"/>"><i class="header__cart--icon fa-solid fa-cart-shopping"></i><span class="badge badge-danger" id="cart-count">${cartCounter}</span></a>
-            </div>
+            <a href="<c:url value="/cart"/>">
+                <div class="header__cart">
+                    <i class="header__cart--icon fa-solid fa-cart-shopping"></i>
+                    <span class="header__cart-notice" id="cart-count">${cartCounter}</span>
+                </div>
+            </a>
         </div>
     </div>
 </header>
