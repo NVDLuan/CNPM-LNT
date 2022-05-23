@@ -110,7 +110,7 @@ public class GioHangRepositoryImpl implements GioHangRepository {
     public boolean addCountCart(int id) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         GioHang gioHang = session.get(GioHang.class, id);
-        gioHang.setSoLuong(gioHang.getSoLuong()+1);
+        if(gioHang.getIdMatHang().getSoLuong()>gioHang.getSoLuong()) gioHang.setSoLuong(gioHang.getSoLuong()+1);
         session.update(gioHang);
         return true;
     }
@@ -119,7 +119,8 @@ public class GioHangRepositoryImpl implements GioHangRepository {
     public boolean truCountCart(int id) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         GioHang gioHang = session.get(GioHang.class, id);
-        gioHang.setSoLuong(gioHang.getSoLuong()-1);
+        if (gioHang.getSoLuong()>1)
+            gioHang.setSoLuong(gioHang.getSoLuong()-1);
         session.update(gioHang);
         return true;
     }

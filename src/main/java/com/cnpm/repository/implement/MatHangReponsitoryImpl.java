@@ -168,5 +168,13 @@ public class MatHangReponsitoryImpl implements MatHangReponsitory {
         return false;
     }
 
+    @Override
+    public boolean giamsoluong(MatHang matHang, int count) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        matHang.setSoLuong(matHang.getSoLuong()-count);
+        session.update(matHang);
+        return true;
+    }
+
 
 }

@@ -37,17 +37,19 @@ function them(productId){
 }
 
 function bot(productId){
-    let area = document.getElementById(`count-cart-${productId}`);
-    if(parseInt(area.value)>1){
-        let url = "/CNPM-LNT-spring/api/cart/tru/"+productId;
-        console.log(url);
-        fetch(url).then(res=>res.json()).then(data=>{
-            var area = document.getElementById(`count-cart-${productId}`);
-            area.value= parseInt(area.value)-1;
-            var count = document.getElementById("cart-count");
-            count.innerText= data;
-            capnhatSum();
-        })
+    if(document.getElementById(`count-cart-${productId}`).value>1) {
+        let area = document.getElementById(`count-cart-${productId}`);
+        if (parseInt(area.value) > 1) {
+            let url = "/CNPM-LNT-spring/api/cart/tru/" + productId;
+            console.log(url);
+            fetch(url).then(res => res.json()).then(data => {
+                var area = document.getElementById(`count-cart-${productId}`);
+                area.value = parseInt(area.value) - 1;
+                var count = document.getElementById("cart-count");
+                count.innerText = data;
+                capnhatSum();
+            })
+        }
     }
 }
 function capnhatSum (){
