@@ -30,18 +30,18 @@ public class GioHangRepositoryImpl implements GioHangRepository {
 
 
     @Override
-    public boolean add(GioHang gioHang) {
+    public boolean add(GioHang gioHang, Account account) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         String username = PersonUsing.getUser();
         List<Account> acc = this.accountRepository.getAccount(username);
         gioHang.setIdKhachHang(acc.get(0));
-        if(this.isEmptyMatHang(gioHang.getIdMatHang())==null){
+        if(this.isEmptyMatHang(gioHang.getIdMatHang(), account)==null){
             gioHang.setSoLuong(1);
             session.save(gioHang);
 
         }
         else{
-            GioHang g = this.isEmptyMatHang(gioHang.getIdMatHang());
+            GioHang g = this.isEmptyMatHang(gioHang.getIdMatHang(), account);
             g.setSoLuong(g.getSoLuong()+1);
             session.update(g);
         }
@@ -91,18 +91,15 @@ public class GioHangRepositoryImpl implements GioHangRepository {
     }
 
     @Override
-    public GioHang isEmptyMatHang(MatHang matHang) {
+    public GioHang isEmptyMatHang(MatHang matHang, Account account) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder =session.getCriteriaBuilder();
         CriteriaQuery<GioHang> query = criteriaBuilder.createQuery(GioHang.class);
         Root root = query.from(GioHang.class);
         query = query.select(root);
-        String username= PersonUsing.getUser();
-        List<Account> accs = this.accountRepository.getAccount(username);
-        Predicate p = criteriaBuilder.equal(root.get("idKhachHang").as(Account.class),accs.get(0));
+        Predicate p = criteriaBuilder.equal(root.get("idKhachHang").as(Account.class),account);
         Predicate p2 = criteriaBuilder.equal(root.get("idMatHang").as(MatHang.class),matHang);
-        query = query.where(p);
-        query = query.where(p2);
+        query = query.where(p,p2);
         Query q = session.createQuery(query);
         List<GioHang> gioHangs = q.getResultList();
         if(gioHangs.isEmpty()) return null;

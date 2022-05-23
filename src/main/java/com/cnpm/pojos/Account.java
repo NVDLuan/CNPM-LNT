@@ -124,8 +124,6 @@ public class Account implements Serializable{
         this.id = id;
     }
 
-
-
     public String getUser() {
         return user;
     }
