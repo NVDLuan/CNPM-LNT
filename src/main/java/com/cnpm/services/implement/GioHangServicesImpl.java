@@ -2,6 +2,7 @@ package com.cnpm.services.implement;
 
 import com.cnpm.pojos.GioHang;
 import com.cnpm.repository.GioHangRepository;
+import com.cnpm.services.AccountService;
 import com.cnpm.services.GioHangServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,9 +12,12 @@ import java.util.List;
 public class GioHangServicesImpl implements GioHangServices {
     @Autowired
     private GioHangRepository gioHangRepository;
+    @Autowired
+    private AccountService accountService;
     @Override
     public boolean add(GioHang gioHang) {
-        return this.gioHangRepository.add(gioHang);
+
+        return this.gioHangRepository.add(gioHang, this.accountService.getProfile());
     }
 
     @Override

@@ -41,19 +41,25 @@ public class MatHang implements Serializable {
     @Column(name = "ChiTiet")
     private String chiTiet;
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "LoaiSP")
     private LoaiSanPham loaiSP;
+
+    @Override
+    public String toString() {
+        return "MatHang{" +
+                "tenMH='" + tenMH + '\'' +
+                '}';
+    }
 
     @Transient
     private MultipartFile file;
     @Transient
     private int idLoaiSanPham;
-    @OneToMany(mappedBy = "matHang")
+    @OneToMany(mappedBy = "matHang",fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Images> listImg;
-
-    @OneToMany(cascade = CascadeType.DETACH,fetch = FetchType.EAGER, mappedBy = "iDMatHang")
+    @OneToMany(cascade = CascadeType.DETACH,fetch = FetchType.LAZY, mappedBy = "iDMatHang")
     @JsonIgnore
     private Collection<Comment> commentCollection;
 

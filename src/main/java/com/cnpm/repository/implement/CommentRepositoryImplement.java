@@ -6,6 +6,7 @@
 package com.cnpm.repository.implement;
 
 import com.cnpm.pojos.Comment;
+import com.cnpm.pojos.MatHang;
 import com.cnpm.repository.CommentRepository;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 /**
@@ -38,6 +40,7 @@ public class CommentRepositoryImplement implements CommentRepository{
         }
         return null;
     }
+
     @Override
     public List<Comment> getComment() {
         Session session = this.sessionFactory.getObject().getCurrentSession();
@@ -58,5 +61,25 @@ public class CommentRepositoryImplement implements CommentRepository{
             return false;
         }
     }
-    
+
+    public List<Comment> list(MatHang matHang, int page) {
+        Session session= this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Comment> query = builder.createQuery(Comment.class);
+        Root root = query.from(Comment.class);
+        query = query.select(root);
+        Predicate p = builder.equal(root.get("iDMatHang").as(MatHang.class), matHang);
+        query=query.where(p);
+        Order order = builder.desc(root.get("idComment").as(Integer.class));
+        query = query.orderBy(order);
+        Query q =session.createQuery(query);
+
+        q.setMaxResults(5);
+        q.setFirstResult((page)*5);
+
+        if(!q.getResultList().isEmpty()) return q.getResultList();
+
+        return null;
+    }
+
 }

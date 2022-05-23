@@ -55,20 +55,17 @@ public class HoaDonRepositoryImpl implements HoaDonRepository {
     }
 
     @Override
-    public List<HoaDon> getList() {
-//        Session session = this.sessionFactory.getObject().getCurrentSession();
-//        CriteriaBuilder builder = session.getCriteriaBuilder();
-//        CriteriaQuery query = builder.createQuery(HoaDon.class);
-//        Root root = query.from(HoaDon.class);
-//        query = query.select(root);
-//        String user = PersonUsing.getUser();
-//        List<Account> acc = this.accountRepository.getAccount(user);
-//        Predicate p = builder.equal(root.get("idKhachHang").as(Account.class),acc.get(0));
-//        query =query.where(p);
-//        Query q = session.createQuery(query);
-//        return q.getResultList();
+
+    public List<HoaDon> getList() {// day la hoa don cua nguoi dung
         Session session = this.sessionFactory.getObject().getCurrentSession();
-        Query q = session.createQuery("From HoaDon");
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery query = builder.createQuery(HoaDon.class);
+        Root root = query.from(HoaDon.class);
+        query = query.select(root);
+        List<Account> acc = this.accountRepository.getAccount(PersonUsing.getUser());
+        Predicate p = builder.equal(root.get("idKhachHang").as(Account.class),acc.get(0));
+        query =query.where(p);
+        Query q = session.createQuery(query);
         return q.getResultList();
     }
 
@@ -77,5 +74,12 @@ public class HoaDonRepositoryImpl implements HoaDonRepository {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         session.update(hoaDon);
         return true;
+    }
+
+    @Override
+    public List<HoaDon> getListAdmin(int page) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("FROM HoaDon");
+        return q.getResultList();
     }
 }

@@ -10,14 +10,44 @@ public class DiaChi implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="IdAddress")
     private int id;
-    @Column(name="Address")
-    private String address;
     @JoinColumn(name="IdAccount")
     @ManyToOne(fetch = FetchType.LAZY)
     private Account account;
     private String name;
     private String phone;
+    private String Tinh;
+    private String Quan;
+    private String Diachinha;
 
+    public void setTinh(String Tinh) {
+        this.Tinh = Tinh;
+    }
+
+    public void setQuan(String Quan) {
+        this.Quan = Quan;
+    }
+
+    public void setDiachinha(String Diachinha) {
+        this.Diachinha = Diachinha;
+    }
+
+    public String getTinh() {
+        return Tinh;
+    }
+
+    public String getQuan() {
+        return Quan;
+    }
+
+    public String getDiachinha() {
+        return Diachinha;
+    }
+
+    public DiaChi(String Tinh, String Quan, String Diachinha) {
+        this.Tinh = Tinh;
+        this.Quan = Quan;
+        this.Diachinha = Diachinha;
+    }
 
     public DiaChi() {
     }
@@ -44,14 +74,6 @@ public class DiaChi implements Serializable {
 
     public void setAccount(Account account) {
         this.account = account;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public int getId() {

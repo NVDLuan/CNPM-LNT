@@ -29,12 +29,12 @@ public class HoaDon {
     @Column(name="SoLuong")
     private int soLuong;
     @JoinColumn(name="diachi")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private DiaChi diaChi;
     @Column(name="TongTien")
     private int tongTien;
     @Column(name="TinhTrang")
-    private int tinhTrang;
+    private String tinhTrang;
     @Transient
     private int idAddress;
     private int gia;
@@ -117,18 +117,19 @@ public class HoaDon {
         this.tongTien = tongTien;
     }
 
-    public int getTinhTrang() {
+    public String getTinhTrang() {
+
         return tinhTrang;
     }
 
-    public void setTinhTrang(int tinhTrang) {
+    public void setTinhTrang(String tinhTrang) {
         this.tinhTrang = tinhTrang;
     }
 
     public HoaDon() {
     }
 
-    public HoaDon(Account idKhachHang, MatHang idMatHang, int soLuong, int tongTien, int tinhTrang) {
+    public HoaDon(Account idKhachHang, MatHang idMatHang, int soLuong, int tongTien, String tinhTrang) {
         this.idKhachHang = idKhachHang;
         this.idMatHang = idMatHang;
         this.soLuong = soLuong;

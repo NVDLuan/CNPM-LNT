@@ -567,9 +567,11 @@
     display: block;
     padding: 2px 10px;
 
+
 }
 .category__item--link--border{
     border-top: 1px solid #ccc;
+
 }
 .category__item--link:hover{
     color: var(--primary_color);
@@ -593,7 +595,9 @@
     border-left: none;
 }
 
+
 .category>ul li:first-child a {
+
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
 }
@@ -605,6 +609,7 @@
     position: absolute;
 }
 
+
 .category li>ul li {
     width: 50%;
     border: none;
@@ -614,23 +619,33 @@
     margin-left: 150px;
 }
 
-.category li>ul li:first-child a {
+
+nav li>ul li {
+    width: 94%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background: rgb(235, 211, 211);
+    text-align: left;
+}
+
+nav li>ul li:first-child a {
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
 }
 
-.category li>ul li:last-child {
+
+nav li>ul li:last-child {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
 
-.category li>ul li:last-child a {
+
+nav li>ul li:last-child a {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
 
-/*khi hover thì hiện menu con*/
-.category li:hover>ul {
+nav li:hover>ul {
     display: block;
 }
 
@@ -638,6 +653,12 @@
     display: block;
 }
 
+
+
+nav>ul li>ul li>ul {
+    margin-left: 246px;
+    margin-top: -50px;
+}
 /* Home zshop */
 .home__product{
     margin-bottom: 10px;
@@ -722,6 +743,7 @@
     box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.05);
 }
 .home__product--items-images{
+    object-fit: cover;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -1511,7 +1533,8 @@ i.home__product--items-like-icon-nolike{
     margin-bottom: 10px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);
     border-radius: 5px;
-    height: 200px;
+    height: auto;
+    padding: 15px;
 }
 .marginn{
     margin-bottom: 40px;

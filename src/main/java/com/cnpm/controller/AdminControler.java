@@ -81,7 +81,7 @@ public class AdminControler {
             return "addNhomSanPham";
         }
     }
-    
+
     @GetMapping("/loaisanpham")
     public String addLoaiSanPham(Model model){
         List<NhomSanPham> listNSP = this.nhomSanPhamService.getNSP();
@@ -134,16 +134,17 @@ public class AdminControler {
         
         return "taikhoan";
     }
+
     @GetMapping("/comment")
     public String ViewComment(Model model){
         model.addAttribute("viewcm", this.commentService.getComment());
         return "comment";
     }
 
-    @GetMapping("/hoadon")
+    @GetMapping("/donDatHang")
     public String ViewHoadon(Model model){
-       model.addAttribute("viewhd", this.hoaDonServices.getList());
-        return "hoadon";
+        model.addAttribute("listHoaDon", this.hoaDonServices.getListAdmin(0));
+        return "donDatHang";
     }
 
     @GetMapping("/deleteComment/{id}")
@@ -151,11 +152,5 @@ public class AdminControler {
         this.commentService.delete(id);
         return "redirect:/admin/comment";
     }
-    @GetMapping("/deleteAccount/{id}")
-    public String deleteAccount(@PathVariable int id) {
-        this.accountService.delete(id);
-        return "redirect:/admin/taikhoan";
-    }
-//    Kết thúc phần tài khoản
 
 }

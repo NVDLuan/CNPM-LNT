@@ -55,5 +55,9 @@ public class CommentServiceImplement implements CommentService{
     public boolean delete(int id) {
         return this.commentRepository.delete(id);
     }
+    @Override
+    public List<Comment> list(int matHang, int page) {
+        return this.commentRepository.list(this.matHangReponsitory.getOne(matHang), page);
+    }
 
 }

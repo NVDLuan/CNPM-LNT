@@ -68,6 +68,14 @@ public class GioHang implements Serializable {
 
     public GioHang() {
     }
-    
+    @Override
+    public String toString() {
+        return "GioHang{" +
+                "idGioHang=" + idGioHang +
+                ", idKhachHang=" + idKhachHang +
+                ", idMatHang=" + idMatHang +
+                ", soLuong=" + soLuong +
+                '}';
+    }
     
 }

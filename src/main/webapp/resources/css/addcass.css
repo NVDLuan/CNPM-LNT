@@ -1,0 +1,25 @@
+.grid__column-2-15-account {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 70%;
+    float: left;
+}
+.grid__column-2-16-account {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 30%;
+    float: left;
+}
+.images__account{
+    width: 200px;
+    height: 200px;
+}
+.auform__controls{
+    margin-bottom: 50px;
+}
+.product-detail-img {
+    object-fit: cover;
+}
+.container__img{
+    object-fit: cover;
+}

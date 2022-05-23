@@ -12,12 +12,19 @@
                         <li class="category__item category__item--active">
                             <a href="" class="category__item--link">Sản phẩm</a>
                         </li>
-                        <c:forEach var="c" items="${danhmuc}">
+                        <c:forEach var="listLSP" items="${danhmuc}">
                             <li class="category__item">
-                                <c:url value="/" var="catPath">
-                                    <c:param name="danhmuc" value="${c.idLoaiSP}"></c:param>
-                                </c:url>
-                                <a href="${catPath}" class="category__item--link">${c.tenLoaiSP}</a>
+                                <a class="category__item--link category__item--link--border" >${listLSP.tenNhomSP}</a>
+                                <ul class="category__list">
+                                    <c:forEach var="c" items="${listLSP.loaiSanPham}">
+                                        <li class="category__item">
+                                            <c:url value="/" var="catPath">
+                                                <c:param name="danhmuc" value="${c.idLoaiSP}"></c:param>
+                                            </c:url>
+                                            <a href="${catPath}" class="category__item--link">${c.tenLoaiSP}</a>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
                             </li>
                         </c:forEach>
                     </ul>
@@ -111,13 +118,19 @@
                             </div>
                         </div>
                         <div id="commentAral">
-                            <c:forEach items="${product.commentCollection}" var="comment">
+                            <c:if test="${listComment!=null}">
+                            <c:forEach items="${listComment}" var="comment">
                                 <div class="comment__user">
                                     <div class="comment__user--maggin">
+                                        <c:if test="${comment.idAccount.avatar!= ''}">
+                                            <img src="${comment.idAccount.avatar}" alt="" class="comment__user--img">
+                                        </c:if>
+                                        <c:if test="${comment.idAccount.avatar==''}">
                                         <img src="<c:url value="/images/1.jpg"/>" alt="" class="comment__user--img">
+                                        </c:if>
                                         <br>
                                         <div class="comment__user--div my_comment">
-                                            <span class="comment__user--name">TNhan.ITTechnology@gmail.com</span>
+                                            <span class="comment__user--name">${comment.idAccount.user}</span>
                                             <div class="home__product--items-rating">
                                                 <i class="home__product--items-star-yelown fa-solid fa-star"></i>
                                                 <i class="home__product--items-star-yelown fa-solid fa-star"></i>
@@ -138,6 +151,7 @@
                                     <div class="comment__user--duongke"></div>
                                 </div>   
                             </c:forEach>
+                            </c:if>
                         </div>
                     </div>
                 </div>

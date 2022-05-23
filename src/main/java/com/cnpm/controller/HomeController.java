@@ -8,10 +8,6 @@ package com.cnpm.controller;
 import com.cnpm.javaUtils.PersonUsing;
 import com.cnpm.pojos.*;
 import com.cnpm.services.*;
-import com.cnpm.pojos.Account;
-import com.cnpm.pojos.LoaiSanPham;
-import com.cnpm.pojos.MatHang;
-import com.cnpm.pojos.NhomSanPham;
 import com.cnpm.services.AccountService;
 import com.cnpm.services.GioHangServices;
 import com.cnpm.services.LoaiSanPhamService;
@@ -25,7 +21,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +45,8 @@ public class HomeController {
     private NhomSanPhamService nhomSanPhamService;
     @Autowired
     private HoaDonServices hoaDonServices;
+    @Autowired
+    private CommentService commentService;
     @ModelAttribute
     public void attribute(Model model) {
         if (PersonUsing.getUser() != "anonymousUser") {
@@ -80,10 +77,14 @@ public class HomeController {
         return "lienhe";
     }
     @RequestMapping("/chitiet/{id}")
-    public String chitiet(Model model, @PathVariable(value = "id") Integer id) {
+    public String chitiet(Model model, @PathVariable(value = "id") Integer id, Map<String, String> param) {
         model.addAttribute("product", this.matHangService.getOne(id));
-        model.addAttribute("hoadon", new HoaDon());
-        model.addAttribute("danhmuc", this.loaiSanPhamService.getList());
+        model.addAttribute("listComment",this.commentService.list(id,0));
+        if(Integer.parseInt(param.getOrDefault("danhmuc", "-1"))!=-1){
+            model.addAttribute("listHang", this.matHangService.getListInLSP(Integer.parseInt(param.getOrDefault("danhmuc", "-1"))));
+        }
+        else model.addAttribute("listHang", this.matHangService.getList(param.getOrDefault("kw", ""), Integer.parseInt(param.getOrDefault("page", "1"))));
+        model.addAttribute("danhmuc", this.nhomSanPhamService.getNSP());
         return "chitiet";
     }
     @GetMapping("/Thanhtoan/all")
@@ -92,16 +93,19 @@ public class HomeController {
         model.addAttribute("productListA", this.gioHangServices.get());
         model.addAttribute("diachi", this.addressServices.listDiaChi());
         model.addAttribute("hoadon", new HoaDon());
+        session.setAttribute("cart", this.gioHangServices.get());
+        session.setAttribute("url", "all");
         return "Thanhtoan";
     }
 
 
     @RequestMapping("/Thanhtoan/{id}")
-    public String Thanhtoan(Model model, @PathVariable(value = "id") Integer id) {
+    public String Thanhtoan(Model model, @PathVariable(value = "id") Integer id, HttpSession session) {
         model.addAttribute("diachi", this.addressServices.listDiaChi());
         model.addAttribute("address" , this.addressServices.listDiaChi());
         model.addAttribute("product", this.matHangService.getOne(id));
         model.addAttribute("hoadon", new HoaDon());
+        session.setAttribute("url", id);
         return "Thanhtoan";
     }
 
@@ -119,21 +123,26 @@ public class HomeController {
         return "addAddress";
     }
     @PostMapping("/address/add")
-    public String reAdd(Model model, @ModelAttribute(name = "address")DiaChi diaChi){
+    public String reAdd(Model model, @ModelAttribute(name = "address")DiaChi diaChi, HttpSession session){
         if(this.addressServices.create(diaChi)){
-            return "forward:/Thanhtoan";
+            return "redirect:/Thanhtoan/"+session.getAttribute("url");
         }
         return "redirect:/address/add";
     }
     @PostMapping("/dathang/all")
     public String datHangAll(Model model, @ModelAttribute(value="hoadon") HoaDon hoaDon, HttpSession session){
-        if(this.hoaDonServices.thanhtoan(this.gioHangServices.get(),hoaDon))
-        return "redirect:/";
+        if(this.hoaDonServices.thanhtoan((List<GioHang>) session.getAttribute("cart"),hoaDon))
+        return "redirect:/hoadon";
         else return "redirect:/Thanhtoan/all";
     }
     @PostMapping("/dathang/{id}")
     public String datHangID(Model model, @ModelAttribute(value="hoadon") HoaDon hoaDon, @PathVariable(value = "id")Integer id){
         if(this.hoaDonServices.thanhtoan(this.matHangService.getOne(id), hoaDon))return "redirect:/";
         else return "redirect:/Thanhtoan/"+id;
+    }
+    @GetMapping("/hoadon")
+    public String hoadonthanhtoan(Model model, HttpSession session){
+        model.addAttribute("hoadon", (List<GioHang>) session.getAttribute("cart"));
+        return "hoadon";
     }
 }

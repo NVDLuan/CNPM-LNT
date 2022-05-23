@@ -59,7 +59,7 @@ public class HoaDonServicesImpl implements HoaDonServices {
             for (GioHang e : gioHangList) {
                 hoaDon.setSoLuong(e.getSoLuong());
                 hoaDon.setTongTien(e.getIdMatHang().getGiaKhuyenMai() * hoaDon.getSoLuong());
-                hoaDon.setTinhTrang(0);
+                hoaDon.setTinhTrang("Đã đặt thành công");
                 hoaDon.setIdMatHang(e.getIdMatHang());
                 hoaDon.setGia(e.getIdMatHang().getGiaKhuyenMai());
                 hoaDon.setDateDatHang(new Date());
@@ -79,12 +79,17 @@ public class HoaDonServicesImpl implements HoaDonServices {
     @Override
     public boolean thanhtoan(MatHang matHang, HoaDon hoaDon) {
         hoaDon.setSoLuong(1);
-        hoaDon.setTinhTrang(0);
+        hoaDon.setTinhTrang("Đã đặt thành công");
         hoaDon.setIdMatHang(matHang);
         hoaDon.setGia(matHang.getGiaKhuyenMai());
         hoaDon.setTongTien(matHang.getGiaKhuyenMai());
         hoaDon.setDateDatHang(new Date());
         if(this.add(hoaDon)) return true;
         return false;
+    }
+
+    @Override
+    public List<HoaDon> getListAdmin(int page) {
+        return this.hoaDonRepository.getListAdmin(page);
     }
 }
