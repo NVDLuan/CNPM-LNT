@@ -13,10 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 @Repository
@@ -65,6 +62,8 @@ public class HoaDonRepositoryImpl implements HoaDonRepository {
         List<Account> acc = this.accountRepository.getAccount(PersonUsing.getUser());
         Predicate p = builder.equal(root.get("idKhachHang").as(Account.class),acc.get(0));
         query =query.where(p);
+        Order order = builder.desc(root.get("idHoaDon").as(Integer.class));
+        query = query.orderBy(order);
         Query q = session.createQuery(query);
         return q.getResultList();
     }
@@ -79,7 +78,14 @@ public class HoaDonRepositoryImpl implements HoaDonRepository {
     @Override
     public List<HoaDon> getListAdmin(int page) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
-        Query q = session.createQuery("FROM HoaDon");
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery query = builder.createQuery(HoaDon.class);
+        Root root = query.from(HoaDon.class);
+        Order order = builder.desc(root.get("idHoaDon").as(Integer.class));
+        query = query.select(root).orderBy(order);
+        Query q = session.createQuery(query);
+        q.setMaxResults(20);
+        q.setFirstResult(page*20);
         return q.getResultList();
     }
 }

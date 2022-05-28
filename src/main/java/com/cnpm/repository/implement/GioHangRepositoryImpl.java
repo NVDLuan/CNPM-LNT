@@ -97,18 +97,27 @@ public class GioHangRepositoryImpl implements GioHangRepository {
     @Override
     public GioHang isEmptyMatHang(MatHang matHang, Account account) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
-        Query query = session.createQuery("from GioHang as gh where gh.idMatHang ="+ matHang + "and gh.idKhachHang=" +account);
-         if(query.getResultList().isEmpty())return null;
-         else return (GioHang) query.getResultList().get(0);
-
+        CriteriaBuilder criteriaBuilder =session.getCriteriaBuilder();
+        CriteriaQuery<GioHang> query = criteriaBuilder.createQuery(GioHang.class);
+        Root root = query.from(GioHang.class);
+        query = query.select(root);
+        Predicate p = criteriaBuilder.equal(root.get("idKhachHang").as(Account.class),account);
+        Predicate p2 = criteriaBuilder.equal(root.get("idMatHang").as(MatHang.class),matHang);
+        query = query.where(p,p2);
+        Query q = session.createQuery(query);
+        List<GioHang> gioHangs = q.getResultList();
+        if(gioHangs.isEmpty()) return null;
+        return gioHangs.get(0);
     }
 
     @Override
     public boolean addCountCart(int id) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         GioHang gioHang = session.get(GioHang.class, id);
-        gioHang.setSoLuong(gioHang.getSoLuong()+1);
-        session.update(gioHang);
+        if(gioHang.getIdMatHang().getSoLuong()>gioHang.getSoLuong()) {
+            gioHang.setSoLuong(gioHang.getSoLuong() + 1);
+            session.update(gioHang);
+        }
         return true;
     }
 
@@ -116,8 +125,10 @@ public class GioHangRepositoryImpl implements GioHangRepository {
     public boolean truCountCart(int id) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         GioHang gioHang = session.get(GioHang.class, id);
-        gioHang.setSoLuong(gioHang.getSoLuong()-1);
-        session.update(gioHang);
+        if (gioHang.getSoLuong()>1){
+            gioHang.setSoLuong(gioHang.getSoLuong()-1);
+            session.update(gioHang);
+        }
         return true;
     }
 }

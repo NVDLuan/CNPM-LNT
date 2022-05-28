@@ -21,4 +21,5 @@ public interface AccountRepository {
     Account getProfile();
 
     boolean updateAvatar(Account acc);
+    boolean updatepass(Account acc);
 }

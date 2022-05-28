@@ -46,7 +46,7 @@ public class ProductAdminController {
     public String updateProduct(@ModelAttribute("product") MatHang matHang, @PathVariable int id) {
         matHang.setIdMatHang(id);
         matHang.setLoaiSP(this.loaiSanPhamService.getOne(matHang.getIdLoaiSanPham()));
-        if (this.matHangService.updateProduct(matHang)) {
+        if ( this.matHangService.updateProduct(matHang)) {
             return "redirect:/admin/sanpham";
         } else {
             return "redirect:/admin/updatesanpham/" + id;

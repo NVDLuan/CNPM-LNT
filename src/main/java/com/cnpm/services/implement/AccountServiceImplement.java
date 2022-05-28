@@ -84,10 +84,21 @@ public class AccountServiceImplement implements AccountService{
     @Override
     public boolean updateAvatar(Account acc) {
         Account account1 = this.getProfile();
-        System.err.println("======fix bug======");
-        System.err.println(account1.toString());
         account1.setFile(acc.getFile());
         return this.account.updateAvatar(account1);
+    }
+
+    @Override
+    public boolean updatePass(String passNew, String passNow) {
+        Account account1 = this.getProfile();
+        if(this.passwordEncoder.matches(passNow, account1.getPass())){
+            account1.setPass(this.passwordEncoder.encode(passNew));
+            return this.account.updatepass(account1);
+        }
+        else{
+            throw new RuntimeException("mat khau ko dung");
+        }
+
     }
 
 }

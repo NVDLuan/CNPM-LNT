@@ -26,4 +26,5 @@ public interface AccountService extends UserDetailsService {
 
     Account getProfile();
     boolean updateAvatar(Account acc);
+    boolean updatePass(String passNew, String passNow);
 }

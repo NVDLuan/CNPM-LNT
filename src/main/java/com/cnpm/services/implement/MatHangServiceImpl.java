@@ -62,4 +62,9 @@ public class MatHangServiceImpl implements MatHangService{
         return this.matHangRepository.updateProduct(matHang);
     }
 
+    @Override
+    public boolean giamsoluong(MatHang matHang, int count){
+        return this.matHangRepository.giamsoluong(matHang,count);
+    }
+
 }

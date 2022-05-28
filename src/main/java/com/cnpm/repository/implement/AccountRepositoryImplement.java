@@ -120,4 +120,15 @@ public class AccountRepositoryImplement implements AccountRepository{
 
         return false;
     }
+    @Override
+    public boolean updatepass(Account acc) {
+        try {
+            Session session = this.sessionFactory.getObject().getCurrentSession();
+            session.update(acc);
+            return true;
+        }
+        catch (HibernateException e){
+            return false;
+        }
+    }
 }

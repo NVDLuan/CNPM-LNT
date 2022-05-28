@@ -154,18 +154,38 @@ public class MatHangReponsitoryImpl implements MatHangReponsitory {
     @Override
     public boolean updateProduct(MatHang matHang) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
-        try {
-            Map result = this.cloudinary.uploader().upload(matHang.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
-            matHang.setHinhAnh((String) result.get("secure_url"));
-            session.update(matHang);
-            return true;
-        } catch (IOException ex) {
-            Logger.getLogger(MatHangReponsitoryImpl.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (HibernateException e) {
-            System.err.println("== update mat hang ===");
+        if(!matHang.getFile().isEmpty()) {
+            try {
+                Map result = this.cloudinary.uploader().upload(matHang.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+                matHang.setHinhAnh((String) result.get("secure_url"));
+                session.update(matHang);
+                return true;
+            } catch (IOException ex) {
+                MatHang matHang1 = this.getOne(matHang.getIdMatHang());
+            } catch (HibernateException e) {
+                System.err.println("== update mat hang ===");
 
+            }
+        }
+        else{
+            try {
+                MatHang matHang1 = this.getOne(matHang.getIdMatHang());
+                matHang.setHinhAnh(matHang1.getHinhAnh());
+                session.update(matHang);
+                return true;
+            }catch (HibernateException e){
+                System.err.println(e.toString());
+                return false;
+            }
         }
         return false;
+    }
+    @Override
+    public boolean giamsoluong(MatHang matHang, int count) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        matHang.setSoLuong(matHang.getSoLuong()-count);
+        session.update(matHang);
+        return true;
     }
 
 

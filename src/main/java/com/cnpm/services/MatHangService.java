@@ -28,4 +28,6 @@ public interface MatHangService {
     List<MatHang> getList(int count, int page, String kw);
 
     boolean updateProduct(MatHang matHang);
+
+    boolean giamsoluong(MatHang matHang, int count);
 }

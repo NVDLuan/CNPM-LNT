@@ -4,10 +4,7 @@ import com.cnpm.pojos.GioHang;
 import com.cnpm.pojos.HoaDon;
 import com.cnpm.pojos.MatHang;
 import com.cnpm.repository.HoaDonRepository;
-import com.cnpm.services.AccountService;
-import com.cnpm.services.AddressServices;
-import com.cnpm.services.GioHangServices;
-import com.cnpm.services.HoaDonServices;
+import com.cnpm.services.*;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +23,8 @@ public class HoaDonServicesImpl implements HoaDonServices {
     private AccountService accountService;
     @Autowired
     private GioHangServices gioHangServices;
+    @Autowired
+    private MatHangService matHangService;
     @Override
     public boolean add(HoaDon hoaDon) {
         hoaDon.setDiaChi(this.addressServices.getOne(hoaDon.getIdAddress()));
@@ -67,6 +66,7 @@ public class HoaDonServicesImpl implements HoaDonServices {
                     return false;
                 }
                 this.gioHangServices.delete(e.getIdGioHang());
+                this.matHangService.giamsoluong(hoaDon.getIdMatHang(), hoaDon.getSoLuong());
 
             }
             return true;

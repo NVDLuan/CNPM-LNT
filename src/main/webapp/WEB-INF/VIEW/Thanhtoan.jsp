@@ -242,22 +242,21 @@
                             <c:url value="/address/add" var="address"/>
                             <a href="${address}"><h3>Thêm địa chỉ mới</h3></a>
                         </c:if>
-                        <c:if test="${diachi!=null}">
-                            <form:select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" path="idAddress">
-                                <c:forEach var="ip" items="${diachi}">
-                                    <form:option value="${ip.id}"> ${ip.name} - ${ip.phone} - ${ip.tinh} - ${ip.quan} - ${ip.diachinha}</form:option>
-                                </c:forEach>
-                            </form:select>
-                        </c:if>
-<%--                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"--%>
-<%--                             data-mdb-parent="#accordionExample">--%>
-<%--                            <div class="accordion-body">--%>
-<%--                                <div class="form-outline d-flex">--%>
-<%--                                    <input type="text" id="form1" class="form-control" />--%>
-<%--                                    <label class="form-label" for="form1">Enter code</label>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
+
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                             data-mdb-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="form-outline d-flex">
+                                    <c:if test="${diachi!=null}">
+                                        <form:select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" path="idAddress">
+                                            <c:forEach var="ip" items="${diachi}">
+                                                <form:option value="${ip.id}"> ${ip.name} - ${ip.phone} - ${ip.tinh} - ${ip.quan} - ${ip.diachinha}</form:option>
+                                            </c:forEach>
+                                        </form:select>
+                                    </c:if>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -345,49 +344,8 @@
             </div>
 
             <div class="col-md-8 mb-4">
-                <div class="card mb-4">
-                    <div class="card-header py-3">
-                        <h5 class="mb-0 text-font text-uppercase">Địa chỉ</h5>
-                    </div>
-                    <div class="card-body">
-                        <form>
-                            <div class="row mb-4">
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <input type="text" id="form11Example1" class="form-control" />
-                                        <label class="form-label" for="form11Example1">Tên của bạn</label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <input type="text" id="form11Example2" class="form-control" />
-                                        <label class="form-label" for="form11Example2">Số điện thoại</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Text input -->
-                            <div class="form-outline mb-4">
-                                <input type="text" id="form11Example3" class="form-control" />
-                                <label class="form-label" for="form11Example3">Tỉnh</label>
-                            </div>
-
-                            <!-- Text input -->
-                            <div class="form-outline mb-4">
-                                <input type="text" id="form11Example4" class="form-control" />
-                                <label class="form-label" for="form11Example4">Quận/Huyện</label>
-                            </div>
-
-                            <!-- Email input -->
-                            <div class="form-outline mb-4">
-                                <input type="email" id="form11Example5" class="form-control" />
-                                <label class="form-label" for="form11Example5">Địa chỉ</label>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn button-order col-md-10">Mua ngay</button>
-                            </div>
-                        </form>
-                    </div>
+                <div class="text-center">
+                    <button type="submit" class="btn button-order col-md-10">Mua ngay</button>
                 </div>
             </div>
         </div>
