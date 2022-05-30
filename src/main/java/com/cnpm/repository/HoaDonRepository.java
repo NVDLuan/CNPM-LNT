@@ -11,5 +11,6 @@ public interface HoaDonRepository {
     List<HoaDon> getList();
     boolean update(HoaDon hoaDon);
     List<HoaDon> getListAdmin(int page);
-
+    List<HoaDon> getnew();
+    int getcountNew();
 }

@@ -39,6 +39,10 @@ and open the template in the editor.
         <put-attribute name="title" value="Avatar new"/>
         <put-attribute name="content" value="/WEB-INF/VIEW/addavatar.jsp"/>
     </definition>
+    <definition name="donhang" extends="baseLayout">
+        <put-attribute name="title" value="Đơn hàng của bạn"/>
+        <put-attribute name="content" value="/WEB-INF/VIEW/donhang.jsp"/>
+    </definition>
 
     <!--Phan admin-->
     <definition name="baseAdmin" template="/WEB-INF/layout/baseAdmin.jsp">

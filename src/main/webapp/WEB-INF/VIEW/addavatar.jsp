@@ -26,7 +26,7 @@
                             <a class="category__item--link" href="#" title="Trang chủ">Đổi Avata</a>
                         </li>
                         <li class="category__item ">
-                            <c:url value="/user/donhang" var="donhang"/>
+                            <c:url value="/donhang" var="donhang"/>
                             <a class="category__item--link" href="${donhang}" title="Trang chủ">Xem đơn hàng</a>
                         </li>
                     </ul>

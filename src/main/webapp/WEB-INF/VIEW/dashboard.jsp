@@ -75,12 +75,12 @@
                                 <i class="fa fa-shopping-cart fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">124</div>
+                                <div class="huge">${countnew}</div>
                                 <div>Đơn hàng mới!</div>
                             </div>
                         </div>
                     </div>
-                    <a href="<c:url value="/admin/donDatHang"/>">
+                    <a href="<c:url value="/admin/donDatHang/new"/>">
                         <div class="panel-footer">
                             <span class="pull-left">Xem chi tiết</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

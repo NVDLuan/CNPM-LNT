@@ -37,7 +37,7 @@
                                                 <th>Giá khuyến mãi</th>
                                                 <th>Hãng</th>
                                                 <th>Số lượng</th>
-                                                <th>Chi tiết</th>
+                                                <th class="max_witch" style="width: 358px">Chi tiết</th>
                                                 <th colspan="2"><a href="create.html">Thêm</a></th>
                                             </tr>
                                             </tr>

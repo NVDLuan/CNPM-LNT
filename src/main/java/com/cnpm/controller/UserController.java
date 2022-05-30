@@ -10,8 +10,11 @@ import com.cnpm.pojos.AccountTmp;
 import com.cnpm.pojos.MatHang;
 import com.cnpm.services.AccountService;
 
+import java.util.Map;
 import java.util.Random;
 import javax.servlet.http.HttpSession;
+
+import com.cnpm.services.HoaDonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.http.HttpStatus;
@@ -35,6 +38,8 @@ public class UserController {
     private JavaMailSender mailSender;
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private HoaDonServices hoaDonServices;
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
@@ -90,11 +95,24 @@ public class UserController {
     }
 
     @PostMapping("/changeassword")
-    public String Changeassword(Model model, @ModelAttribute(value = "changeassword")Account acc ){
-        this.accountService.updateAvatar(acc);
-        model.addAttribute("changeassword", this.accountService.getProfile());
+    public String Changeassword(Model model, @RequestParam(required = false) Map<String, String> param){
+        String passnow = param.get("passnow");
+        String passnew = param.get("passnew");
+        String repassnew = param.get("repassnew");
+        if(!passnew.equals(repassnew)){
+            return "redirect:/profile";
+        }
+        else{
+            if(this.accountService.updatePass(passnew, passnow)){
+                return "redirect:/";
+            }
+            else {
+                System.err.println("===bug===");
+                System.err.println("bug do chinh sua data");
+                return "redirect:/profile";
+            }
+        }
 
-        return "profileUser";
     }
 //    Update avatar
     @GetMapping("/addavatar")
@@ -113,6 +131,12 @@ public class UserController {
     @GetMapping("/profilename")
     public ResponseEntity <Account> getprofile(){
         return new ResponseEntity<>(this.accountService.getProfile(), HttpStatus.OK);
+    }
+
+    @GetMapping("/donhang")
+    public String Donhangcuaban(Model model){
+        model.addAttribute("myhoadon", this.hoaDonServices.getList());
+        return "donhang";
     }
         
 }

@@ -228,6 +228,7 @@
         </c:if>
         <form:form class="needs-validation" name="frmthanhtoan" method="post" action="${action}" modelAttribute="hoadon">
         <div class="row">
+            <div class="text-center">THANH TOÁN</div>
             <div class="col-md-8">
                 <div class="card mb-4 accordion" id="accordionExample">
                     <div class="card body accordion-item">
@@ -286,7 +287,11 @@
                     </div>
                     <div class="card-body">
                         <c:if test="${productListA!=null}" >
+                            <? int sum =0;?>
                             <c:forEach var="li" items="${productListA}">
+                                <?
+                                    sum +=${li.idMatHang.giaKhuyenMai}* ${li.soLuong};
+                                ?>
                                 <br>
                             <div class="row">
                                 <div class="col-md-4">
@@ -294,20 +299,23 @@
                                          class="rounded-3" style="width: 100px;" alt="Blue Jeans Jacket" />
                                 </div>
                                 <div class="col-md-6 ms-3">
-                                    <span class="mb-0 text-price">${li.idMatHang.giaKhuyenMai}</span>
+                                    <span class="mb-0 text-price price">${li.idMatHang.giaKhuyenMai}</span>
                                     <p class="mb-0 text-descriptions">${li.idMatHang.tenMH}</p>
+                                    <p class="text-descriptions mt-0">Số lượng:<span class="text-descriptions fw-bold counter-cart">${li.soLuong}</span>
+                                    </p>
                                 </div>
                             </div>
+
+                            </c:forEach>
                             <div class="card-footer mt-4">
                                 <ul class="list-group list-group-flush">
                                     <li
                                             class="list-group-item d-flex justify-content-between align-items-center px-0 fw-bold text-uppercase">
                                         Tổng tiền
-                                        <span>${li.idMatHang.giaKhuyenMai}</span>
+                                        <span id="sumMoney"><?=sum?></span>
                                     </li>
                                 </ul>
                             </div>
-                            </c:forEach>
                         </c:if>
                         <c:if test="${product!=null}">
                         <div class="row">
@@ -316,9 +324,8 @@
                                      class="rounded-3" style="width: 100px;" alt="Blue Jeans Jacket" />
                             </div>
                             <div class="col-md-6 ms-3">
-                                <span class="mb-0 text-price">${product.giaKhuyenMai}</span>
+                                <span class="mb-0 text-price ">${product.giaKhuyenMai}</span>
                                 <p class="mb-0 text-descriptions">${product.tenMH}</p>
-                                <span class="text-descriptions fw-bold">Black</span>
                                 <p class="text-descriptions mt-0">Số lượng:<span
                                         class="text-descriptions fw-bold">1</span>
                                 </p>
@@ -326,16 +333,13 @@
                         </div>
                         <div class="card-footer mt-4">
                             <ul class="list-group list-group-flush">
-                                <li
-                                        class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0 text-muted">
+                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0 text-muted">
                                     Subtotal
                                     <span>${li.idMatHang.giaKhuyenMai}</span>
                                 </li>
-                                <li
-                                        class="list-group-item d-flex justify-content-between align-items-center px-0 fw-bold text-uppercase">
-                                    Total to pay
-                                    <span>${li.idMatHang.giaKhuyenMai}</span>
-                                </li>
+<%--                                <li class="list-group-item d-flex justify-content-between align-items-center px-0 fw-bold text-uppercase">--%>
+<%--                                    <span>${li.idMatHang.giaKhuyenMai}</span>--%>
+<%--                                </li>--%>
                             </ul>
                         </div>
                         </c:if>
@@ -360,6 +364,47 @@
 <script type="text/javascript" src="<c:url value="/js/mdb.min.js" />"></script>
 <!-- Custom scripts -->
 <script type="text/javascript"></script>
+<script>
+    function capnhatSum (){
+        var gia = document.getElementsByClassName("price");
+        var counts = document.getElementsByClassName("counter-cart");
+        var sum =0;
+        for(i=0; i<gia.length; i++){
+            console.log(gia[i].innerText);
+            sum += parseInt(gia[i].innerText)* parseInt(counts[i].innerText);
+            console.log(sum);
+        }
+        document.getElementById("sumMoney").innerText=viewMoney(sum.toString());
+        document.getElementById("sumMoneytmp").innerText=viewMoney(sum.toString());
+    }
+    window.addEventListener("load", capnhatSum());
+    function viewMoney(money){
+        result ="0đ";
+        len = money.length/3;
+        console.log(len)
+
+        for(i=0; i<len; i++){
+            console.log(i);
+            if(i==0){
+                tmp =money.slice(-3);
+                if(tmp!=null){
+                    result= tmp+"VND";
+                }
+            }
+            else{
+                tmp= money.slice((i+1)*-3, i*(-3));
+                console.log(tmp)
+                if(tmp!=null || tmp!=""){
+                    result= tmp + "."+result;
+                }
+            }
+
+
+        }
+        return result;
+
+    }
+</script>
 </body>
 
 </html>

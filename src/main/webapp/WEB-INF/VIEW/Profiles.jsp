@@ -40,13 +40,13 @@
                     <h3 class="category__heading"><i class="category__heading--icon fa-solid fa-list"></i>Danh mục</h3>
                     <ul class="category__list ">
                         <li class="category__item category__item--active">
-                            <a class="category__item--link" href="#" title="Trang chủ">Trang chủ</a>
+                            <a class="category__item--link" href="<c:url value="/" />" title="Trang chủ">Trang chủ</a>
                         </li>
                         <li class="category__item ">
                             <a class="category__item--link" href="#" title="Trang chủ">Đổi mật khẩu</a>
                         </li>
                         <li class="category__item ">
-                            <a class="category__item--link" href="#" title="Trang chủ">Đổi Avata</a>
+                            <a class="category__item--link" href="<c:url value="/addavatar" />" title="Trang chủ">Đổi Avata</a>
                         </li>
                         <li class="category__item ">
                             <c:url value="/user/donhang" var="donhang"/>
@@ -93,7 +93,7 @@
                                         <div class="auform__body">
                                             <c:url value="/changeassword" var="acction"/>
                                             <%--@elvariable id="changeassword" type=""--%>
-                                            <form:form method="post" action="${acction}" modelAttribute="changeassword">
+                                            <form method="post" action="${acction}">
                                                 <div class="auform__container">
                                                     <div class="auform__header">
                                                         <h3 class="auform__heading">Đổi mật khẩu</h3>
@@ -101,16 +101,13 @@
                                                     </div>
                                                     <div class="auform__form">
                                                         <div class="auform__group">
-                                                            <input type="text" class="auform__input" placeholder="${Changeassword.user}" name="user">
+                                                                <input name="passnow" type="password" class="auform__input" placeholder="Mật khẩu củ của bạn" />
                                                         </div>
                                                         <div class="auform__group">
-                                                            <input type="text" class="auform__input" readonly placeholder="${Changeassword.email}" name="email">
+                                                            <input name="passnew" type="password" class="auform__input" placeholder="Mật khẩu mới của bạn" />
                                                         </div>
                                                         <div class="auform__group">
-                                                            <form:input path="pass" type="password" class="auform__input" placeholder="Mật khẩu mới của bạn" name="passwords"/>
-                                                        </div>
-                                                        <div class="auform__group">
-                                                            <form:input path="repass" type="password" class="auform__input" placeholder="Nhập lại khẩu mới của bạn" name="passwords"/>
+                                                            <input name="repassnew" type="password" class="auform__input" placeholder="Nhập lại khẩu mới của bạn" />
                                                         </div>
                                                     </div>
                                                     <div class="auform__arsilde">
@@ -122,10 +119,10 @@
                                                     </div>
                                                     <div class="auform__controls" >
                                                         <button class="btn auform__controls--back btn__normal js-model-close">TRỞ LẠI</button>
-                                                        <form:button type="submit" class="btn btn__primary" value="ĐỔI AVATAR"/>
+                                                        <input type="submit" class="btn btn__primary" value="ĐỔI MẬT KHẨU"/>
                                                     </div>
                                                 </div>
-                                            </form:form>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

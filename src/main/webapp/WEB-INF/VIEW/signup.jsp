@@ -38,8 +38,8 @@
                         <h1>ĐĂNG KÍ SHOP_LNT</h1>                   
                         <form:input type="text" id="username" name="username" placeholder="User" path="user"/>
                         <form:input type="text" id="username" name="username" placeholder="Email của bạn" path="email"/>
-                        <form:input type="text" id="username" name="username" placeholder="Mật khẩu của bạn" path="pass"/>
-                        <form:input type="text" id="username" name="username" placeholder="Nhập lại mật khẩu của bạn" path="repass"/>
+                        <form:input type="password" id="username" name="username" placeholder="Mật khẩu của bạn" path="pass"/>
+                        <form:input type="password" id="username" name="username" placeholder="Nhập lại mật khẩu của bạn" path="repass"/>
                         <input type="submit" value="ĐĂNG KÍ">
                     </form:form>
                 </div>

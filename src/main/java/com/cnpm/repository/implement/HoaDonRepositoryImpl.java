@@ -88,4 +88,26 @@ public class HoaDonRepositoryImpl implements HoaDonRepository {
         q.setFirstResult(page*20);
         return q.getResultList();
     }
+
+    @Override
+    public List<HoaDon> getnew() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery query = builder.createQuery(HoaDon.class);
+        Root root = query.from(HoaDon.class);
+        Predicate p = builder.equal(root.get("tinhTrang").as(String.class), "Đã đặt thành công");
+        Order order = builder.desc(root.get("idHoaDon").as(Integer.class));
+        query = query.where(p);
+        query= query.orderBy(order);
+        Query q = session.createQuery(query);
+        if(q.getResultList().isEmpty()) return null;
+        return q.getResultList();
+    }
+
+    @Override
+    public int getcountNew() {
+        List<HoaDon> list = this.getnew();
+        if(list==null) return 0;
+        else return list.size();
+    }
 }

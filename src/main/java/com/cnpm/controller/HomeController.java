@@ -136,13 +136,21 @@ public class HomeController {
         else return "redirect:/Thanhtoan/all";
     }
     @PostMapping("/dathang/{id}")
-    public String datHangID(Model model, @ModelAttribute(value="hoadon") HoaDon hoaDon, @PathVariable(value = "id")Integer id){
-        if(this.hoaDonServices.thanhtoan(this.matHangService.getOne(id), hoaDon))return "redirect:/";
+    public String datHangID(Model model, @ModelAttribute(value="hoadon") HoaDon hoaDon, @PathVariable(value = "id")Integer id, HttpSession session){
+        session.setAttribute("mathang", this.matHangService.getOne(id));
+        if(this.hoaDonServices.thanhtoan(this.matHangService.getOne(id), hoaDon))return "redirect:/hoadon";
         else return "redirect:/Thanhtoan/"+id;
     }
     @GetMapping("/hoadon")
     public String hoadonthanhtoan(Model model, HttpSession session){
-        model.addAttribute("hoadon", (List<GioHang>) session.getAttribute("cart"));
+        if(session.getAttribute("mathang")!= null) {
+            model.addAttribute("mathang", session.getAttribute("mathang"));
+            session.removeAttribute("mathang");
+        }
+        else {
+            model.addAttribute("hoadon", (List<GioHang>) session.getAttribute("cart"));
+            session.removeAttribute("cart");
+        }
         return "hoadon";
     }
 }

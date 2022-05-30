@@ -26,27 +26,26 @@
               <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                 <tr>
-                  <th>ID Hóa đơn</th>
                   <th>ID Khách hàng</th>
                   <th>ID Mặt hàng</th>
                   <th>Số lượng</th>
                   <th>Tổng tiền</th>
                   <th>Tình trạng</th>
                   <th>Địa chỉ</th>
-                  <th colspan="2">Tác vụ</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${listHoaDon}" var="hoadon">
                   <tr class="odd gradeX">
-                    <td>${hoadon.idHoaDon}</td>
                     <td>${hoadon.idKhachHang.user}</td>
                     <td>${hoadon.idMatHang.tenMH}</td>
                     <td>${hoadon.soLuong}</td>
                     <td>${hoadon.tongTien}</td>
                     <td>${hoadon.tinhTrang}</td>
                     <td>${hoadon.diaChi.diachinha} ${hoadon.diaChi.quan} ${hoadon.diaChi.tinh}</td>
-                    <td><a href="<c:url value="/admin/deleteHoadon/${comment.idComment}"/>" onclick="return confirm('bạn có chắc chắn không? ');">delete</a></td>
+<%--                    <td>--%>
+<%--                      <a href="<c:url value="/admin/deleteHoadon/${comment.idComment}"/>" onclick="return confirm('bạn có chắc chắn không? ');">delete</a>--%>
+<%--                    </td>--%>
                   </tr>
                 </c:forEach>
                 </tbody>

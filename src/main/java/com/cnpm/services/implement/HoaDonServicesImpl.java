@@ -92,4 +92,14 @@ public class HoaDonServicesImpl implements HoaDonServices {
     public List<HoaDon> getListAdmin(int page) {
         return this.hoaDonRepository.getListAdmin(page);
     }
+
+    @Override
+    public List<HoaDon> getnew() {
+        return this.hoaDonRepository.getnew();
+    }
+
+    @Override
+    public int getcountNew() {
+        return this.hoaDonRepository.getcountNew();
+    }
 }

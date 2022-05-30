@@ -110,6 +110,7 @@ public class AdminControler {
         int page = Integer.parseInt(param.getOrDefault("page", "1"));
         int count = Integer.parseInt(param.getOrDefault("count", "20"));
         model.addAttribute("list", this.matHangService.getList(count, page));
+        model.addAttribute("countnew", this.hoaDonServices.getcountNew());
         return "pageAdmin";
     }
     
@@ -146,6 +147,12 @@ public class AdminControler {
         model.addAttribute("listHoaDon", this.hoaDonServices.getListAdmin(0));
         return "donDatHang";
     }
+    @GetMapping("/donDatHang/new")
+    public String ViewHoadonnew(Model model){
+        model.addAttribute("listHoaDon", this.hoaDonServices.getnew());
+        return "donDatHang";
+    }
+
 
     @GetMapping("/deleteComment/{id}")
     public String deleteComment(@PathVariable int id) {

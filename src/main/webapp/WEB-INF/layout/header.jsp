@@ -102,10 +102,7 @@
                                 <a href="${profile}">Tài khoản của tôi</a>
                             </li>
                             <li class="header__navbar-user-item">
-                                <a href="">Địa chỉ của tôi</a>
-                            </li>
-                            <li class="header__navbar-user-item">
-                                <a href="/donhang">Đơn mua</a>
+                                <a href="<c:url value="/donhang"/>">Đơn mua</a>
                             </li>
                             <li class="header__navbar-user-item">
                                 <a href="<c:url value="/logout"/>" >Đăng xuất</a>

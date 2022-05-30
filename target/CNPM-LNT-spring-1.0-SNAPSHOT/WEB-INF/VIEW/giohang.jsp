@@ -58,14 +58,6 @@
                         <p class="vat">(Đã bao gồm thuế VAT nếu có)</p>
                     </div>
                     <a href="<c:url value="/Thanhtoan/all"/>"><button class="btn__price--items">Tiến hành đạt hàng</button></a>
-                    <div class="discount__code">
-                        <span class="discount__code--donate">Mã giảm giá / quà tặng</span>
-                        <br>
-                        <div class="timkiem">
-                            <input type="text" class="text__discount__code" placeholder="Nhập ở đây...">
-                            <input type="button" class="btn__discount__code" value="Đồng ý">
-                        </div>
-                    </div>
                     <div class="clear"></div>
                 </div>
             </div>

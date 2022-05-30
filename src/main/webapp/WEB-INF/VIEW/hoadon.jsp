@@ -238,9 +238,19 @@
             <th>Số lượng</th>
             <th>Giá khuyến mãi</th>
             <th>Thành tiền</th>
-        </tr>
-        <tr>
-            <c:forEach var="item" items="${hoadon}">
+        </tr><c:if test="${mathang!= null}">
+            <tr id="mathang">
+                <td>${mathang.tenMH}</td>
+                <td>
+                    <img src="${mathang.hinhAnh}" class="Hinhanhthanhtoan" alt="">
+                </td>
+                <td>1</td>
+                <td>${mathang.giaKhuyenMai}</td>
+                <td>${mathang.giaKhuyenMai}</td>
+            </tr>
+        </c:if>
+        <c:forEach var="item" items="${hoadon}">
+            <tr class="hoadonlist">
                 <td>${item.idMatHang.tenMH}</td>
                 <td>
                     <img src="${item.idMatHang.hinhAnh}" class="Hinhanhthanhtoan" alt="">
@@ -248,8 +258,8 @@
                 <td>${item.soLuong}</td>
                 <td>${item.idMatHang.giaKhuyenMai}</td>
                 <td>${item.soLuong * item.idMatHang.giaKhuyenMai}</td>
-            </c:forEach>
-        </tr>
+            </tr>
+        </c:forEach>
         <tr>
             <td colspan="5" class="tong">Lưu ý: Sản phẩm có thể đến chậm 3 đến 4 ngày!!!</td>
         </tr>
@@ -260,5 +270,6 @@
         Nhân viên </div>
 </div>
 </body>
+
 
 </html>
