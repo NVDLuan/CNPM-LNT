@@ -159,5 +159,9 @@ public class AdminControler {
         this.commentService.delete(id);
         return "redirect:/admin/comment";
     }
-
+    @GetMapping("/giaohang/{id}")
+    public String giaohang(@PathVariable(name = "id")Integer id){
+        this.hoaDonServices.capnhat(id);
+        return "redirect:/admin/donDatHang";
+    }
 }

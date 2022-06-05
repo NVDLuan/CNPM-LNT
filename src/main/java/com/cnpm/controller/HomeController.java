@@ -153,4 +153,9 @@ public class HomeController {
         }
         return "hoadon";
     }
+    @GetMapping("donhang/huy/{id}")
+    public String huydon(Model model, @PathVariable(name = "id")Integer id){
+        this.hoaDonServices.huydonhang(id);
+        return "redirect:/donhang";
+    }
 }

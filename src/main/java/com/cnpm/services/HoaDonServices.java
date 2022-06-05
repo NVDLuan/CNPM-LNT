@@ -17,4 +17,6 @@ public interface HoaDonServices {
     List<HoaDon> getListAdmin(int page);
     List<HoaDon> getnew();
     int getcountNew();
+    boolean huydonhang(int id);
+    boolean capnhat(int id);
 }

@@ -102,4 +102,14 @@ public class HoaDonServicesImpl implements HoaDonServices {
     public int getcountNew() {
         return this.hoaDonRepository.getcountNew();
     }
+
+    @Override
+    public boolean huydonhang(int id) {
+        return this.hoaDonRepository.huydonhang(id);
+    }
+
+    @Override
+    public boolean capnhat(int id) {
+        return this.hoaDonRepository.capnhat(id);
+    }
 }

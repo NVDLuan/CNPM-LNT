@@ -110,4 +110,30 @@ public class HoaDonRepositoryImpl implements HoaDonRepository {
         if(list==null) return 0;
         else return list.size();
     }
+
+    @Override
+    public boolean huydonhang(int id) {
+        try {
+            Session session = this.sessionFactory.getObject().getCurrentSession();
+            HoaDon hoaDon = session.get(HoaDon.class, id);
+            hoaDon.setTinhTrang("hủy");
+            session.update(hoaDon);
+            return true;
+        }catch (HibernateException e){
+            return false;
+        }
+    }
+
+    @Override
+    public boolean capnhat(int id) {
+        try {
+            Session session = this.sessionFactory.getObject().getCurrentSession();
+            HoaDon hoaDon = session.get(HoaDon.class, id);
+            hoaDon.setTinhTrang("Đã giao");
+            session.update(hoaDon);
+            return true;
+        }catch (HibernateException e){
+            return false;
+        }
+    }
 }

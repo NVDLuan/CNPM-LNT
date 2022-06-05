@@ -15,7 +15,7 @@
         <nav class="header__navbar">
             <ul class="header__navbar-list">
                 <li class="header__navbar-item header__navbar-item--has-qr header__navbar-item--lnt">
-                    Công nghệ phần mềm - Thiết kế website Shopee - (LNT)
+                    Shop linh kiện điện tử - (LNT)
                     <div class="header__qr">
                         <img class="header__qr-img" src="<c:url value="/images/qr_code.png"/> " alt="QR code">
                         <div class="header__qr-app">

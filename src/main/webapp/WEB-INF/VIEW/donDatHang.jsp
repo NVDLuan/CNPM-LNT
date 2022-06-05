@@ -32,6 +32,7 @@
                   <th>Tổng tiền</th>
                   <th>Tình trạng</th>
                   <th>Địa chỉ</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,9 +44,11 @@
                     <td>${hoadon.tongTien}</td>
                     <td>${hoadon.tinhTrang}</td>
                     <td>${hoadon.diaChi.diachinha} ${hoadon.diaChi.quan} ${hoadon.diaChi.tinh}</td>
-<%--                    <td>--%>
-<%--                      <a href="<c:url value="/admin/deleteHoadon/${comment.idComment}"/>" onclick="return confirm('bạn có chắc chắn không? ');">delete</a>--%>
-<%--                    </td>--%>
+                    <td>
+                      <c:if test="${hoadon.tinhTrang=='Đã đặt thành công'}">
+                        <a href="<c:url value="/admin/giaohang/${hoadon.idHoaDon}"/>" >Giao hàng</a>
+                      </c:if>
+                    </td>
                   </tr>
                 </c:forEach>
                 </tbody>
